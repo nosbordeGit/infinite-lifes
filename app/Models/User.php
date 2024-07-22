@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Endereco;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -17,9 +20,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'telefone',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -43,5 +47,29 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function endereco() : HasOne {
+        return $this->hasOne(Endereco::class);
+    }
+
+    public function feedbacks(): HasMany{
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function cliente() : HasOne {
+        return $this->hasOne(Cliente::class);
+    }
+
+    public function vendedor() : HasOne {
+        return $this->hasOne(Vendedor::class);
+    }
+
+    public function administrador() : HasOne {
+        return $this->hasOne(Administrador::class);
+    }
+
+    public function transportadora() : HasOne {
+        return $this->hasOne(Transportadora::class);
     }
 }
