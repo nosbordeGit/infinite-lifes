@@ -25,6 +25,17 @@ class Endereco extends Model
         'user_id'
     ];
 
+    protected function casts() : array {
+        return [
+            'cep' => 'string',
+            'pais' => 'string',
+            'estado' => 'string',
+            'cidade' => 'string',
+            'bairro' => 'string',
+            'endereco' => 'string'
+        ];
+    }
+
     public function usuario(){
         return $this->belongsTo(User::class, 'usuario_id', 'id');
     }

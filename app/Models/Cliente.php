@@ -24,6 +24,15 @@ class Cliente extends Model
         'user_id'
     ];
 
+    protected function casts() : array {
+        return [
+            'nome' => 'string',
+            'sobrenome' => 'string',
+            'cpf' => 'string',
+            'data_nascimento' => 'date'
+        ];
+    }
+
     public function usuario() : BelongsTo {
         return $this->belongsTo(User::class);
     }

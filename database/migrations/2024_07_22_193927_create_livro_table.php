@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('resumo');
             $table->integer('quantidade_paginas');
             $table->string('autor', 100);
-            $table->decimal('valor');
+            $table->decimal('valor', 8, 2);
             $table->integer('estoque');
             $table->string('isbn13', 18);
             $table->string('idioma', 100);

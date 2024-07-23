@@ -13,14 +13,19 @@ class Administrador extends Model
 
     protected $table = 'administrador';
     protected $fillable = [
-        'empresa',
-        'cnpj',
+        'tipo',
         'user_id'
     ];
 
     protected $hidden = [
         'user_id'
     ];
+
+    protected function casts(): array {
+        return [
+            'tipo' => 'string'
+        ];
+    }
 
     public function usuario() : BelongsTo {
         return $this->belongsTo(User::class);

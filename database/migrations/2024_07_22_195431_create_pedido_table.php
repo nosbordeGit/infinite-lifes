@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valor');
+            $table->decimal('valor', 8 ,2);
             $table->string('status', 20);
             $table->foreignId('cliente_id')->constrained('cliente');
             $table->foreignId('cartao_id')->constrained('cartao');
