@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Administrador;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class TransportadoraFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'empresa' => $this->faker->company(),
+            'user_id' => User::pluck('id')->random(),
+            'administrador_id' => Administrador::pluck('id')->random,
+            'cnpj' => $this->faker->randomNumber(9, true),
         ];
     }
 }

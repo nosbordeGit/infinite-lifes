@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class ClienteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome' => $this->faker->firstName(null),
+            'sobrenome' => $this->faker->lastName(null),
+            'cpf' => $this->faker->randomNumber(9, true),
+            'data_nascimento' => $this->faker->date(),
+            'user_id' => User::pluck('id')->random()
         ];
     }
 }

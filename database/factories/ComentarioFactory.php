@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Cliente;
+use App\Models\Livro;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class ComentarioFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'corpo' => $this->faker->sentence(6),
+            'cliente_id' => Cliente::pluck('id')->random(),
+            'livro_id' => Livro::pluck('id')->random()
         ];
     }
 }

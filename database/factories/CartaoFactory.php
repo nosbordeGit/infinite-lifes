@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Cliente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class CartaoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'numero' => $this->faker->creditCardNumber(null, true, '.'),
+            'cvc' => $this->faker->randomNumber(4, false),
+            'tipo' => $this->faker->creditCardType(),
+            'validade' =>$this->faker->creditCardExpirationDate(),
+            'cliente_id' => Cliente::pluck('id')->random(),
+            'status' => $this->faker->boolean()
         ];
     }
 }

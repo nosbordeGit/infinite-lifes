@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class FeedbackFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'titulo' => $this->faker->word(),
+            'status' => $this->faker->randomElement(['Finalizado', 'Aberto']),
+            'corpo' => $this->faker->sentence(6),
+            'user_id' => User::pluck('id')->random(),
         ];
     }
 }

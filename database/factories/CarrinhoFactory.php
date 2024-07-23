@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Cliente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class CarrinhoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'status' => $this->faker->boolean(),
+            'cliente_id' => Cliente::pluck('id')->random()
         ];
     }
 }
