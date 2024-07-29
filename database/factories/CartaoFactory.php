@@ -19,7 +19,7 @@ class CartaoFactory extends Factory
     {
         return [
             'numero' => $this->faker->creditCardNumber(null, true, '.'),
-            'cvc' => $this->faker->randomNumber(4, false),
+            'cvc' => $this->faker->randomNumber(4, true),
             'tipo' => $this->faker->creditCardType(),
             'validade' =>$this->faker->creditCardExpirationDate(),
             'cliente_id' => Cliente::pluck('id')->random(),

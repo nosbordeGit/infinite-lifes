@@ -13,6 +13,6 @@ class GeneroSeeder extends Seeder
      */
     public function run(): void
     {
-        Genero::factory(10);
+        Genero::factory(10)->create();
     }
 }

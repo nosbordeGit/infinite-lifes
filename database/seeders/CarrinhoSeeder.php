@@ -13,6 +13,6 @@ class CarrinhoSeeder extends Seeder
      */
     public function run(): void
     {
-        Carrinho::factory(10);
+        Carrinho::factory(10)->create();
     }
 }

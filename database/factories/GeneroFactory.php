@@ -18,8 +18,8 @@ class GeneroFactory extends Factory
     public function definition(): array
     {
         return [
-            'administrador_id' => Administrador::pluck('id')->random,
-            'genero' => $this->faker->randomElement(['Romance', 'Ficção', 'Suspense', 'Drama', 'Terror', 'Ação', 'Luta', 'Sci-fi', 'Comédia', 'Educacional'])->unique()
+            'administrador_id' => Administrador::pluck('id')->random(),
+            'genero' => $this->faker->unique()->randomElement(['Romance', 'Ficção', 'Suspense', 'Drama', 'Terror', 'Ação', 'Luta', 'Sci-fi', 'Comédia', 'Educacional'])
         ];
     }
 }

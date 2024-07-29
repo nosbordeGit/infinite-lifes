@@ -13,6 +13,6 @@ class CartaoSeeder extends Seeder
      */
     public function run(): void
     {
-        Cartao::factory(10);
+        Cartao::factory(10)->create();
     }
 }

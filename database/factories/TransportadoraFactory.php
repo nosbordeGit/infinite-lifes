@@ -21,8 +21,8 @@ class TransportadoraFactory extends Factory
         return [
             'empresa' => $this->faker->company(),
             'user_id' => User::pluck('id')->random(),
-            'administrador_id' => Administrador::pluck('id')->random,
-            'cnpj' => $this->faker->randomNumber(9, true),
+            'administrador_id' => Administrador::pluck('id')->random(),
+            'cnpj' => $this->faker->numerify('##.###.###/####-##'),
         ];
     }
 }

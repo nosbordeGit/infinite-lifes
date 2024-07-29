@@ -41,8 +41,7 @@ class Livro extends Model
     {
         return [
             'titulo' => 'string',
-            'resumo',
-            'quantidade_paginas',
+            'quantidade_paginas' => 'integer',
             'autor' => 'string',
             'valor' => 'decimal:2',
             'estoque' => 'integer',

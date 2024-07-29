@@ -13,6 +13,6 @@ class FeedbackSeeder extends Seeder
      */
     public function run(): void
     {
-        Feedback::factory(9);
+        Feedback::factory(9)->create();
     }
 }

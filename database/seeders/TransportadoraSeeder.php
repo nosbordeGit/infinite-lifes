@@ -13,6 +13,6 @@ class TransportadoraSeeder extends Seeder
      */
     public function run(): void
     {
-        Transportadora::factory(3);
+        Transportadora::factory(3)->create();
     }
 }
