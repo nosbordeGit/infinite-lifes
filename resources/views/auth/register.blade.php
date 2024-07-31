@@ -4,8 +4,8 @@
 
         <!-- Personal Information -->
 
-        <div class="col-md-6-mb-3">
-            <label for="tipoUsuario" class="form-label">Escolha o tipo de usuário:</label>
+        <div class="col-md-6-mb-3 mt-4">
+            <x-input-label for="tipoUsuario" class="form-label" :value="__('Select type of user')" />
             <select class="form-select" id="tipoUsuario" name="tipoUsuario" onchange="showFields(this.value)">
                 <option value="cliente">Cliente</option>
                 <option value="vendedor">Vendedor</option>
@@ -16,7 +16,7 @@
         <div id="clienteFields" style="display: none">
 
             <!-- Name -->
-            <div>
+            <div class="mt-4">
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                     required autofocus autocomplete="name" />
@@ -24,7 +24,7 @@
             </div>
 
             <!-- Last Name -->
-            <div>
+            <div class="mt-4">
                 <x-input-label for="lastname" :value="__('Last Name')" />
                 <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')"
                     required  autocomplete="lastname" />
@@ -32,7 +32,7 @@
             </div>
 
             <!-- CPF -->
-            <div>
+            <div class="mt-4">
                 <x-input-label for="cpf" :value="__('CPF')" />
                 <x-text-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')"
                     required  autocomplete="cpf" />
@@ -40,7 +40,7 @@
             </div>
 
             <!-- Birthday -->
-            <div>
+            <div class="mt-4">
                 <x-input-label for="birthday" :value="__('Birthday')" />
                 <x-text-input id="birthday" class="block mt-1 w-full" type="date" name="birthday" :value="old('birthday')"
                     required  autocomplete="birthday" />
@@ -52,7 +52,7 @@
         <div id="vendedorFields" style="display: none">
 
             <!-- Company -->
-            <div>
+            <div class="mt-4">
                 <x-input-label for="company" :value="__('Company')" />
                 <x-text-input id="company" class="block mt-1 w-full" type="text" name="company" :value="old('company')"
                     required  autocomplete="company" />
@@ -60,7 +60,7 @@
             </div>
 
             <!-- CNPJ -->
-            <div>
+            <div class="mt-4">
                 <x-input-label for="cnpj" :value="__('CNPJ')" />
                 <x-text-input id="cnpj" class="block mt-1 w-full" type="text" name="cnpj" :value="old('cnpj')"
                     required  autocomplete="cnpj" />
@@ -116,35 +116,35 @@
 
         <!-- Country -->
         <div class="mt-4">
-            <x-input-label for="country" :value="__('Country')" />
+            <x-input-label for="country" :value="__('endereco.Country')" />
             <x-text-input id="country" class="" type="text" name="country" required />
             <x-input-error :messages="$errors->get('country')" class="mt-2" />
         </div>
 
         <!-- State -->
         <div class="mt-4">
-            <x-input-label for="state" :value="__('State')" />
+            <x-input-label for="state" :value="__('endereco.State')" />
             <x-text-input id="state" class="" type="text" name="state" required />
             <x-input-error :messages="$errors->get('state')" class="mt-2" />
         </div>
 
         <!-- City -->
         <div class="mt-4">
-            <x-input-label for="city" :value="__('City')" />
+            <x-input-label for="city" :value="__('endereco.City')" />
             <x-text-input id="city" class="" type="text" name="city" required />
             <x-input-error :messages="$errors->get('city')" class="mt-2" />
         </div>
 
         <!-- Neighborhood -->
         <div class="mt-4">
-            <x-input-label for="neighborhood" :value="__('Neighborhood')" />
+            <x-input-label for="neighborhood" :value="__('endereco.Neighborhood')" />
             <x-text-input id="neighborhood" class="" type="text" name="neighborhood" required />
             <x-input-error :messages="$errors->get('neighborhood')" class="mt-2" />
         </div>
 
         <!-- Address -->
         <div class="mt-4">
-            <x-input-label for="address" :value="__('Address')" />
+            <x-input-label for="address" :value="__('endereco.Address')" />
             <x-text-input id="address" class="" type="text" name="address" required />
             <x-input-error :messages="$errors->get('address')" class="mt-2" />
         </div>
