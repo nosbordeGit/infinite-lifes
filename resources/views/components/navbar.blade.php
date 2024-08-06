@@ -19,8 +19,8 @@
                     </x-slot>
                     <x-slot name="content">
                         @if (!Auth::check())
-                            <x-dropdown-link class="dropdown-item" href="#">{{ __('Log in') }}</x-dropdown-link>
-                            <x-dropdown-link class="dropdown-item" href="#">{{ __('Register') }}</x-dropdown-link>
+                            <x-dropdown-link class="dropdown-item" :href="route('login')">{{ __('Log in') }}</x-dropdown-link>
+                            <x-dropdown-link class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</x-dropdown-link>
                         @else
                             @if (Auth::user()->vendedor)
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Stock') }}</x-dropdown-link>
@@ -29,7 +29,7 @@
                                 <x-dropdown-link class="dropdown-item" href="#">{{ _('Cart') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Favorites') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Visited') }}</x-dropdown-link>
-                                <x-dropdown-link class="dropdown-item" href="#">{{ __('Wallet') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" :href="route('cartao.index')">{{ __('Wallet') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Orders') }}</x-dropdown-link>
                             @else
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __("Users") }}</x-dropdown-link>
@@ -38,7 +38,7 @@
                             <x-dropdown-link>
                                 <hr class="dropdown-divider">
                             </x-dropdown-link>
-                            <x-dropdown-link class="dropdown-item" href="#">{{ __('Log Out') }}</x-dropdown-link>
+                            <x-dropdown-link class="dropdown-item" :href="route('logout')">{{ __('Log Out') }}</x-dropdown-link>
                         @endif
                     </x-slot>
                 </x-dropdown>

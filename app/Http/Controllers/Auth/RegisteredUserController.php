@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use SebastianBergmann\Diff\Diff;
 
 class RegisteredUserController extends Controller
 {
