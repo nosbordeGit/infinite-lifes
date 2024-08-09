@@ -48,11 +48,19 @@ class CartaoController extends Controller
         $request->validate([
             'cvc' => ['required', 'string', 'max:5', 'regex: /^[0-9]{3,4}$/'],
             'numero' => ['required', 'string', 'max:20', 'regex: /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/'],
-            'validate' => ['required', 'date', 'after:' . $date],
+            'validade' => ['required', 'date', 'after:' . $date],
             'tipo' => ['required', 'string']
         ]);
 
-        return redirect(route(''));
+        $cliente = Auth::user()->cliente;
+        $cartao = $cliente->cartoes()->create([
+            'cvc' => $request->cvc,
+            'numero' => $request->numero,
+            'validade' => $request->validade,
+            'tipo' => $request->tipo
+        ]);
+
+        return redirect(route('cartao.index'));
     }
 
 }
