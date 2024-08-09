@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CartaoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
@@ -26,5 +27,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/cartao-atualizar', [CartaoController::class, 'atualizar'])->name('cartao.atualizar');
     Route::get('/cartao-informaçoes', [CartaoController::class, 'informacoes'])->name('cartao.informacoes');
 });
+
+Route::get('sair', [AuthenticatedSessionController::class, 'destroy'])
+->name('sair');
 
 require __DIR__.'/auth.php';

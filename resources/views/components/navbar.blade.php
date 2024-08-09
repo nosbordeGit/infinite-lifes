@@ -38,7 +38,7 @@
                             <x-dropdown-link>
                                 <hr class="dropdown-divider">
                             </x-dropdown-link>
-                            <x-dropdown-link class="dropdown-item" :href="route('logout')">{{ __('Log Out') }}</x-dropdown-link>
+                            <x-dropdown-link class="dropdown-item" :href="route('sair')">{{ __('Log Out') }}</x-dropdown-link>
                         @endif
                     </x-slot>
                 </x-dropdown>

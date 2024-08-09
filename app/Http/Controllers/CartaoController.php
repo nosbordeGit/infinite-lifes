@@ -52,8 +52,6 @@ class CartaoController extends Controller
             'tipo' => ['required', 'string']
         ]);
 
-
-
         return redirect(route(''));
     }
 
