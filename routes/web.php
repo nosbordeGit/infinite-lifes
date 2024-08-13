@@ -23,9 +23,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/cartao-index', [CartaoController::class, 'index'])->name('cartao.index');
     Route::get('/cartao-formulario', [CartaoController::class, 'formulario'])->name('cartao.formulario');
     Route::post('/cartao-formulario', [CartaoController::class, 'store'])->name('cartao.store');
-    Route::get('/cartao-deletar', [CartaoController::class, 'deletar'])->name('cartao.deletar');
-    Route::get('/cartao-atualizar', [CartaoController::class, 'atualizar'])->name('cartao.atualizar');
-    Route::get('/cartao-informaçoes', [CartaoController::class, 'informacoes'])->name('cartao.informacoes');
+    Route::post('/cartao-deletar/{id}', [CartaoController::class, 'deletar'])->name('cartao.deletar');
+    Route::put('/cartao-atualizar/{id}', [CartaoController::class, 'atualizar'])->name('cartao.atualizar');
 });
 
 Route::get('sair', [AuthenticatedSessionController::class, 'destroy'])

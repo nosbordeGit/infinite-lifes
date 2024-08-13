@@ -24,20 +24,32 @@ class CartaoController extends Controller
         return view('cliente.cartao.store');
     }
 
-    public function informacoes() : View {
-        $cliente = Auth::user()->cliente;
-        $cartao = Cartao::where('status', 1)->cliente()->get();
-        return view('cliente.cartao.cartoes', compact('cartao'));
-    }
+    public function atualizar(Request $request, $id) : RedirectResponse {
+        $date = Carbon::now();
 
-    public function atualizar() : RedirectResponse {
-        $cliente = Auth::user()->cliente;
+        $request->validate([
+            'cvc' => ['required', 'string', 'max:5', 'regex: /^[0-9]{3,4}$/'],
+            'numero' => ['required', 'string', 'max:20', 'regex: /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/'],
+            'validade' => ['required', 'date', 'after:' . $date],
+            'tipo' => ['required', 'string']
+        ]);
+
+        $cartao = Cartao::find($id);
+        $entradas = $request->except('_token', '_method');
+
+        foreach($entradas as $chave => $valor){
+            $cartao->$chave = $valor;
+        }
+
+        $cartao->save();
 
         return redirect(route('cartao.index'));
     }
 
-    public function deletar() : RedirectResponse {
-        $cliente = Auth::user()->cliente;
+    public function deletar($id) : RedirectResponse {
+        $cartao = Cartao::find($id);
+        $cartao->status = 0;
+        $cartao->save();
 
         return redirect(route('cartao.index'));
     }

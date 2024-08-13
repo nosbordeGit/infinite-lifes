@@ -35,35 +35,64 @@
                                 <p class="card-text"><strong>{{ __('Validate') }}: </strong>{{ $cartao->validade }}</p>
                             </x-slot>
                         </x-cartao.base>
+
+                        <div class="d-grid gap-2 col-5 mx-auto shadow">
+                            <x-primary-button type="button" data-bs-toggle="modal"
+                                data-bs-target="#updateModal">{{ __('Informations') }}</x-primary-button>
+                        </div>
                     </div>
                 @endforeach
             </div>
         </div>
-
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
-            {{ __('Update') }}
-        </button>
     @else
         <x-h1 class="mt-5">{{ __('No registered cards found') }}</x-h1>
     @endif
 
     <!-- Modal -->
-    <div class="modal fade" id="updateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="updateModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="updateModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-cartao.modal>
+        <x-slot name="titulo">
+            <x-h1>{{ _('Card') }}</x-h1>
+        </x-slot>
+
+        <x-slot name="corpo">
+            <form action="{{ route('cartao.atualizar', $cartao->id) }}" method="post">
+                @csrf
+                @method('put')
+                <x-cartao.base>
+                    <x-slot name="tipo">
+                        <x-select class="form-select" id="tipo" name="tipo">
+                            <option value="credito">Crédito</option>
+                            <option value="debito">Debito</option>
+                        </x-select>
+                        <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
+                    </x-slot>
+
+                    <x-slot name="numero">
+                        <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text" name="numero" value="{{ $cartao->numero }}" required  autocomplete="numero"/>
+                        <x-input-error :messages="$errors->get('numero')" class="mt-2" />
+                    </x-slot>
+
+                    <x-slot name="cvc">
+                        <x-text-input id="cvc" class="block mt-1 w-full mt-2" type="text" name="cvc" value="{{ $cartao->cvc }}" required  autocomplete="cvc"/>
+                        <x-input-error :messages="$errors->get('cvc')" class="mt-2" />
+                    </x-slot>
+
+                    <x-slot name="validade">
+                        <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date" name="validade" value="{{ $cartao->validade }}" required  autocomplete="validade"/>
+                        <x-input-error :messages="$errors->get('validade')" class="mt-2" />
+                    </x-slot>
+                </x-cartao.base>
+
+                <x-primary-button>{{ __('Alter') }}</x-primary-button>
+            </form>
+
+            <x-slot name="footer">
+                <form action="{{ route("cartao.deletar", $cartao->id) }}" method="POST">
+                    @csrf
+                    <x-danger-button>{{ __('Delete') }}</x-danger-button>
+                </form>
+            </x-slot>
+        </x-slot>
+    </x-cartao.modal>
+
 </x-app-layout>
