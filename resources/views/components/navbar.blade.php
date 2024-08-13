@@ -7,11 +7,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <x-responsive-nav-link class="nav-link" :href="route('site')" :active="request()->routeIs('site')">Home</x-responsive-nav-link>
+                <x-responsive-nav-link class="nav-link" :href="route('site')" :active="request()->routeIs('site')">{{ __('Home') }}</x-responsive-nav-link>
 
                 <li class="nav-item">
                     <x-responsive-nav-link class="nav-link" :href="route('site')"
-                        :active="request()->routeIs('site')">Books</x-responsive-nav-link>
+                        :active="request()->routeIs('site')">{{ __('Books') }}</x-responsive-nav-link>
                 </li>
                 <x-dropdown>
                     <x-slot name="trigger">
@@ -26,10 +26,10 @@
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Stock') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Sales') }}</x-dropdown-link>
                             @elseif (Auth::user()->cliente)
-                                <x-dropdown-link class="dropdown-item" href="#">{{ _('Cart') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="#">{{ __('Cart') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Favorites') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Visited') }}</x-dropdown-link>
-                                <x-dropdown-link class="dropdown-item" :href="route('cartao.index')">{{ __('Wallet') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('cartao.index') }}">{{ __('Card') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Orders') }}</x-dropdown-link>
                             @else
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __("Users") }}</x-dropdown-link>
@@ -44,9 +44,10 @@
                 </x-dropdown>
             </ul>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="search" placeholder="{{ __('Search') }}" aria-label="Search">
+                <button class="btn btn-outline-danger" type="submit">{{ __("Search") }}</button>
             </form>
         </div>
     </div>
 </nav>
+

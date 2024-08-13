@@ -51,7 +51,7 @@
     <!-- Modal -->
     <x-cartao.modal>
         <x-slot name="titulo">
-            <x-h1>{{ _('Card') }}</x-h1>
+            <x-h1>{{ __('Card') }}</x-h1>
         </x-slot>
 
         <x-slot name="corpo">

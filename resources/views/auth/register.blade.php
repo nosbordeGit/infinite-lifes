@@ -9,8 +9,8 @@
         <div class="col-md-6-mb-3 mt-4">
             <x-input-label for="tipoUsuario" class="form-label" :value="__('Select type of user')" />
             <x-select class="form-select" id="tipoUsuario" name="tipoUsuario" onchange="showFields(this.value)">
-                <option value="cliente">Customer</option>
-                <option value="vendedor">Vendor</option>
+                <option value="cliente">{{ __("Customer") }}</option>
+                <option value="vendedor">{{ __("Vendor") }}</option>
             </x-select>
         </div>
 
