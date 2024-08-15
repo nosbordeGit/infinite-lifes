@@ -22,6 +22,7 @@
                             <x-dropdown-link class="dropdown-item" :href="route('login')">{{ __('Log in') }}</x-dropdown-link>
                             <x-dropdown-link class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</x-dropdown-link>
                         @else
+                        <x-dropdown-link class="dropdown-item" :href="route('profile.edit')">{{ __('Profile') }}</x-dropdown-link>
                             @if (Auth::user()->vendedor)
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Stock') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Sales') }}</x-dropdown-link>
