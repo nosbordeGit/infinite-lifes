@@ -6,11 +6,17 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [SiteController::class, 'site'])->name('site');
+//Rotas do site
+Route::controller(SiteController::class)->group(function(){
+    Route::get('/', 'site')->name('site');
+    Route::get('/livro-{titulo?}-{id}', 'livro')->name('site.livro');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/livro-{titulo}');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -19,15 +25,16 @@ Route::middleware('auth')->group(function () {
 });
 
 //Rotas de CartaoController
-Route::middleware('auth')->group(function(){
-    Route::get('/cartao-index', [CartaoController::class, 'index'])->name('cartao.index');
-    Route::get('/cartao-formulario', [CartaoController::class, 'formulario'])->name('cartao.formulario');
-    Route::post('/cartao-formulario', [CartaoController::class, 'store'])->name('cartao.store');
-    Route::post('/cartao-deletar/{id}', [CartaoController::class, 'deletar'])->name('cartao.deletar');
-    Route::put('/cartao-atualizar/{id}', [CartaoController::class, 'atualizar'])->name('cartao.atualizar');
+Route::middleware('auth')->controller(CartaoController::class)->group(function(){
+    Route::get('/cartao-index','index')->name('cartao.index');
+    Route::get('/cartao-formulario','formulario')->name('cartao.formulario');
+    Route::post('/cartao-formulario','store')->name('cartao.store');
+    Route::post('/cartao-deletar/{id}','deletar')->name('cartao.deletar');
+    Route::put('/cartao-atualizar/{id}','atualizar')->name('cartao.atualizar');
 });
 
-Route::get('sair', [AuthenticatedSessionController::class, 'destroy'])
+Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
 ->name('sair');
+
 
 require __DIR__.'/auth.php';
