@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\CartaoController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-//Rotas do site
+//Rotas do SiteController
 Route::controller(SiteController::class)->group(function(){
     Route::get('/', 'site')->name('site');
     Route::get('/livro-{titulo?}-{id}', 'livro')->name('site.livro');
@@ -15,8 +17,6 @@ Route::controller(SiteController::class)->group(function(){
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/livro-{titulo}');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,6 +31,22 @@ Route::middleware('auth')->controller(CartaoController::class)->group(function()
     Route::post('/cartao-formulario','store')->name('cartao.store');
     Route::post('/cartao-deletar/{id}','deletar')->name('cartao.deletar');
     Route::put('/cartao-atualizar/{id}','atualizar')->name('cartao.atualizar');
+});
+
+//Rotas do CarrinhoController
+Route::controller(CarrinhoController::class)->group(function(){
+    Route::get('/carrinho-index', 'index')->name('carrinho.index');
+    Route::get('/carrinho-remover', 'remover')->name('carrinho.remover');
+    Route::get('/carrinho-adicionar', 'store')->name('carrinho.adicionar');
+    Route::get('/a')->name('carrinho');
+});
+
+//Rotas do PedidoController
+Route::controller(PedidoController::class)->group(function(){
+    Route::get('/pedido-index', 'index')->name('pedido.index');
+    Route::get('/pedido-formulario', 'create')->name('pedido.formulario');
+    Route::get('/pedido-cadastrar', 'store')->name('pedido.cadastrar');
+    Route::get('/pedido-{id}')->name('pedido.pedido');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
