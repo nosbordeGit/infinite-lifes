@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrinho;
+use App\Models\Livro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
 {
@@ -19,7 +22,16 @@ class PedidoController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request);
+        $cliente = Auth::user()->cliente;
+        if($request->input('tipo_id') == 'livro'){
+            $livro = Livro::find($request->id);
+            return view('cliente.pedido.formulario', compact('livro'));
+        }else{
+            $carrinho = Carrinho::find($request->id);
+            return view('cliente.pedido.formulario', compact('carrinho'));
+        }
+
+        return redirect()->back();
     }
 
     /**
