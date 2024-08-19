@@ -34,7 +34,7 @@ class Cliente extends Model
     }
 
     public function usuario() : BelongsTo {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function cartoes() : HasMany {

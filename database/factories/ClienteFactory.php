@@ -20,7 +20,7 @@ class ClienteFactory extends Factory
         return [
             'nome' => $this->faker->firstName(null),
             'sobrenome' => $this->faker->lastName(null),
-            'cpf' => $this->faker->randomNumber(9, true),
+            'cpf' => $this->faker->numerify('###.###.###-##'),
             'data_nascimento' => $this->faker->date(),
             'user_id' => User::pluck('id')->random()
         ];

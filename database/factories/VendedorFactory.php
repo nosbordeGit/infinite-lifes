@@ -20,7 +20,7 @@ class VendedorFactory extends Factory
         return [
             'empresa' => $this->faker->company(),
             'user_id' => User::pluck('id')->random(),
-            'cnpj' => $this->faker->randomNumber(9, true),
+            'cnpj' => $this->faker->numerify('##.###.###/####-##'),
         ];
     }
 }

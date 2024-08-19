@@ -19,6 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
     protected $fillable = [
         'telefone',
         'email',
@@ -59,7 +60,7 @@ class User extends Authenticatable
     }
 
     public function cliente() : HasOne {
-        return $this->hasOne(Cliente::class);
+        return $this->hasOne(Cliente::class, 'user_id', 'id');
     }
 
     public function vendedor() : HasOne {

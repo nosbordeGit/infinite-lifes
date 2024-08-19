@@ -13,6 +13,6 @@ class VisitadoSeeder extends Seeder
      */
     public function run(): void
     {
-        Visitado::factory(30);
+        Visitado::factory(30)->create();
     }
 }
