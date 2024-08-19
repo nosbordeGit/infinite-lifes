@@ -44,8 +44,8 @@ Route::controller(CarrinhoController::class)->group(function(){
 Route::controller(PedidoController::class)->group(function(){
     Route::get('/pedido-index', 'index')->name('pedido.index');
     Route::get('/pedido-formulario', 'create')->name('pedido.formulario');
-    Route::get('/pedido-cadastrar', 'store')->name('pedido.cadastrar');
-    Route::get('/pedido-{id}')->name('pedido.pedido');
+    Route::post('/pedido-cadastrar', 'store')->name('pedido.cadastrar');
+    Route::get('/pedido-{id}', 'show')->name('pedido.pedido');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
