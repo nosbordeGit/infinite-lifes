@@ -24,7 +24,7 @@
 
                         <div class="col-4">
                             <form action="{{ route("carrinho.remover") }}" method="GET">
-                                <x-text-input id="id" class="block mt-1 w-full" type="hidden" name="id" :value="$livro->id" />
+                                <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id" :value="$livro->id" />
                                 <x-danger-button>{{ __('Remove') }}</x-danger-button>
                             </form>
                         </div>
