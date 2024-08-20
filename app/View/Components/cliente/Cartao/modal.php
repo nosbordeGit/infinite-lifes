@@ -21,6 +21,6 @@ class modal extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cartao.modal');
+        return view('components.cliente.cartao.modal');
     }
 }

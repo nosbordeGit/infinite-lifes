@@ -36,7 +36,9 @@ class CarrinhoController extends Controller
     {
         $cliente = Auth::user()->cliente;
         $carrinho = $cliente->carrinhos()->where('status', 1)->first();
-        $carrinho->$cliente()->attach($request->livro_id);
+        $carrinho->livros()->attach($request->livro_id);
+
+        return redirect()->back();
     }
 
     /**
@@ -72,6 +74,6 @@ class CarrinhoController extends Controller
         $carrinho = $cliente->carrinhos()->where('status', 1)->first();
         $carrinho->livros()->detach($request->livro_id);
 
-        return redirect(route('carrinho.index'));
+        return redirect()->back();
     }
 }

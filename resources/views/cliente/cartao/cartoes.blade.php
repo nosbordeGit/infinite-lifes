@@ -20,7 +20,7 @@
             <div class="row">
                 @foreach ($cartoes as $cartao)
                     <div class="col-md-5">
-                        <x-cartao.base>
+                        <x-cliente.cartao.base>
                             <x-slot name="tipo">
                                 <h5 class="card-title">{{ $cartao->tipo }}</h5>
                             </x-slot>
@@ -36,7 +36,7 @@
                             <x-slot name="validade">
                                 <p class="card-text"><strong>{{ __('Validate') }}: </strong>{{ $cartao->validade }}</p>
                             </x-slot>
-                        </x-cartao.base>
+                        </x-cliente.cartao.base>
 
                         <div class="d-grid gap-2 col-5 mx-auto shadow">
                             <x-primary-button type="button" data-bs-toggle="modal"
@@ -51,7 +51,7 @@
     @endif
 
     <!-- Modal -->
-    <x-cartao.modal>
+    <x-cliente.cartao.modal>
         <x-slot name="titulo">
             <x-h1>{{ __('Card') }}</x-h1>
         </x-slot>
@@ -60,7 +60,7 @@
             <form action="{{ route('cartao.atualizar', $cartao->id) }}" method="post">
                 @csrf
                 @method('put')
-                <x-cartao.base>
+                <x-cliente.cartao.base>
                     <x-slot name="tipo">
                         <x-select class="form-select" id="tipo" name="tipo">
                             <option value="credito">Crédito</option>
@@ -83,7 +83,7 @@
                         <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date" name="validade" value="{{ $cartao->validade }}" required  autocomplete="validade"/>
                         <x-input-error :messages="$errors->get('validade')" class="mt-2" />
                     </x-slot>
-                </x-cartao.base>
+                </x-cliente.cartao.base>
 
                 <x-primary-button>{{ __('Alter') }}</x-primary-button>
             </form>
@@ -95,6 +95,6 @@
                 </form>
             </x-slot>
         </x-slot>
-    </x-cartao.modal>
+    </x-cliente.cartao.modal>
 
 </x-app-layout>

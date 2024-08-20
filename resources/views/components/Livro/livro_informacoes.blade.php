@@ -14,9 +14,7 @@
                             $cliente = Auth::user()->cliente;
                             $carrinho = $cliente->carrinhos->firstWhere('status', 1);
                             $temNoCarrinho = $carrinho->livros->first();
-                            //dd($carrinho, $temNoCarrinho);
                         } else {
-                            dd('n ta logado');
                             $temNoCarrinho = null;
                         }
 
@@ -26,7 +24,8 @@
                         @if ($livro->estoque > 0)
                             <form action="{{ route('carrinho.adicionar') }}" method="post">
                                 @csrf
-                                <input type="hidden" value="{{ $livro->id }}" name="livro_id">
+                                <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id"
+                                    :value="$livro->id" />
                                 <x-primary-button>{{ __('Add') }}</x-primary-button>
                             </form>
                         @else
@@ -35,7 +34,8 @@
                     @else
                         <form action="{{ route('carrinho.remover') }}" method="GET">
                             @csrf
-                            <input type="hidden" value="{{ $livro->id }}" name="livro_id">
+                            <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id"
+                                :value="$livro->id" />
                             <x-danger-button>{{ __('Remove') }}</x-danger-button>
 
                         </form>
@@ -44,7 +44,8 @@
                 <div class="col-6">
                     <form action="{{ route('pedido.formulario') }}" method="GET">
                         @csrf
-                        <input type="hidden" value="{{ $livro->id }}" name="livro_id">
+                        <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id"
+                            :value="'livro'" />
                         <x-primary-button>{{ __('Order') }}</x-primary-button>
                     </form>
                 </div>
@@ -67,20 +68,20 @@
                 <p class="card-text"><strong>{{ __('Dimension') }}:</strong> {{ $livro->dimensao }}</p>
                 <p class="card-text"><strong>{{ __('Date of publication') }}:</strong> {{ $livro->data_publicacao }}
                 </p>
-                <p class="card-text"><strong>{{ __('Amount') }}:</strong> {{ $livro->quantidade }}</p>
+                <p class="card-text"><strong>{{ __('Amount') }}:</strong> {{ $livro->estoque }}</p>
             </div>
             <div class="mt-2">
-                <h3><strong>{{ _('About') }}</strong></h3>
+                <h3><strong>{{ __('About') }}</strong></h3>
                 <p><span>{{ $livro?->resumo }}</span></p>
             </div>
             <div class="mt-2">
-                <h3><strong>{{ _('About of Vendor') }}</strong></h3>
+                <h3><strong>{{ __('About of Vendor') }}</strong></h3>
                 <p><strong>{{ __('Name') }}:</strong> {{ $livro->vendedor?->empresa }}</p>
                 <p><strong>{{ __('Email Address') }}:</strong> {{ $livro->vendedor->usuario?->email }}</p>
                 <p><strong>{{ __('Phone Number') }}:</strong> {{ $livro->vendedor->usuario?->telefone }}</p>
             </div>
             <div class="mt-2">
-                <h3><strong>{{ _('Address of Vendor') }}</strong></h3>
+                <h3><strong>{{ __('Address of Vendor') }}</strong></h3>
                 <p><strong>{{ __('CEP') }}:</strong> {{ $livro->vendedor->usuario?->endereco?->cep }}</p>
                 <p><strong>{{ __('endereco.Country') }}:</strong> {{ $livro->vendedor->usuario?->endereco?->pais }}
                 </p>
