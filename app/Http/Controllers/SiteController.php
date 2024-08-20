@@ -19,7 +19,6 @@ class SiteController extends Controller
 
     public function livro($titulo = null ,$id): View {
         $livro = Livro::find($id);
-        //dd($livro);
         return view('site.livro', compact('livro'));
     }
 }
