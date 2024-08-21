@@ -16,7 +16,11 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::user()->cliente){
+            dd('c');
+        }else if(Auth::user()->vendedor){
+            dd('v');
+        }
     }
 
     /**

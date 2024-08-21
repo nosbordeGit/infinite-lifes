@@ -27,11 +27,11 @@
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Stock') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Sales') }}</x-dropdown-link>
                             @elseif (Auth::user()->cliente)
-                                <x-dropdown-link class="dropdown-item" href="#">{{ __('Cart') }}</x-dropdown-link>
-                                <x-dropdown-link class="dropdown-item" href="#">{{ __('Favorites') }}</x-dropdown-link>
-                                <x-dropdown-link class="dropdown-item" href="#">{{ __('Visited') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('carrinho.index') }}">{{ __('Cart') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('favorito.index') }}">{{ __('Favorites') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('visitado.index') }}">{{ __('Visited') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="{{ route('cartao.index') }}">{{ __('Card') }}</x-dropdown-link>
-                                <x-dropdown-link class="dropdown-item" href="#">{{ __('Orders') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('pedido.index') }}">{{ __('Orders') }}</x-dropdown-link>
                             @else
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __("Users") }}</x-dropdown-link>
                             @endif
