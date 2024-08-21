@@ -17,10 +17,16 @@ class PedidoController extends Controller
     public function index()
     {
         if (Auth::user()->cliente) {
-            dd('c');
-        } else if (Auth::user()->vendedor) {
-            dd('v');
+            $cliente = Auth::user()->cliente;
+            $pedidos = $cliente->pedidos()->get();
+            return view('cliente.pedido.index', compact('pedidos'));
+        } else if (Auth::user()->transportadora) {
+            $transportadora = Auth::user()->transportadora;
+            $pedidos = $transportadora->pedidos()->get();
+            return view('cliente.pedido.index', compact('pedidos'));
         }
+
+        return redirect()->back();
     }
 
     /**

@@ -52,12 +52,14 @@ Route::controller(PedidoController::class)->group(function(){
 
 //Rotas do VisitadoController
 Route::controller(VisitadoController::class)->group(function(){
-    Route::get('/visitado-index')->name('visitado.index');
+    Route::get('/visitados-index', 'index')->name('visitado.index');
 });
 
 //Rotas do FavoritoController
 Route::controller(FavoritoController::class)->group(function(){
-    Route::get('/favorito-index')->name('favorito.index');
+    Route::get('/favoritos-index', 'index')->name('favorito.index');
+    Route::get('/favorito-remover', 'remover')->name('favorito.remover');
+    Route::post('/favorito-adicionar', 'store')->name('favorito.adicionar');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
