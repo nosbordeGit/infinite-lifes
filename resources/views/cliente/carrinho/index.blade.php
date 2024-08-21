@@ -6,6 +6,12 @@
     </x-slot>
 
     <div class="container mt-3">
+        @if ($carrinhos->isNotEmpty())
+            @foreach ($carrinhos as $carrinho)
                 <x-carrinho :carrinho="$carrinho"></x-carrinho>
+            @endforeach
+        @else
+        <x-h1 class="mt-5">{{ __('No carts found') }}</x-h1>
+        @endif
     </div>
 </x-app-layout>

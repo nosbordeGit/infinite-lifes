@@ -13,11 +13,18 @@
                         if (Auth::check() && Auth::user()->cliente) {
                             $cliente = Auth::user()->cliente;
                             $carrinho = $cliente->carrinhos->firstWhere('status', 1);
-                            $temNoCarrinho = $carrinho->livros->first();
+                            if ($carrinho != null) {
+                                $temNoCarrinho = $carrinho
+                                ->livros()
+                                ->where('livro_id', $livro->id)
+                                ->first();
+                            }else{
+                                $temNoCarrinho = null;
+                            }
+
                         } else {
                             $temNoCarrinho = null;
                         }
-
                     @endphp
 
                     @if ($temNoCarrinho == null)
@@ -34,6 +41,8 @@
                     @else
                         <form action="{{ route('carrinho.remover') }}" method="GET">
                             @csrf
+                            <x-text-input id="carrinho_id" class="block mt-1 w-full" type="hidden" name="carrinho_id"
+                                :value="$carrinho->id" />
                             <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id"
                                 :value="$livro->id" />
                             <x-danger-button>{{ __('Remove') }}</x-danger-button>
@@ -46,7 +55,8 @@
                         @csrf
                         <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id"
                             :value="'livro'" />
-                            <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id" :value="$livro->id" />
+                        <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id"
+                            :value="$livro->id" />
                         <x-primary-button>{{ __('Order') }}</x-primary-button>
                     </form>
                 </div>

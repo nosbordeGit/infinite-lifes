@@ -16,9 +16,9 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->cliente){
+        if (Auth::user()->cliente) {
             dd('c');
-        }else if(Auth::user()->vendedor){
+        } else if (Auth::user()->vendedor) {
             dd('v');
         }
     }
@@ -67,19 +67,19 @@ class PedidoController extends Controller
         $endereco = $usuario->endereco;
 
         $input = $request->only(['nome', 'sobrenome']);
-        foreach($input as $key => $value){
+        foreach ($input as $key => $value) {
             $cliente->$key = $value;
         }
         $cliente->save();
 
         $input = $request->only(['email', 'telefone']);
-        foreach($input as $key => $value){
+        foreach ($input as $key => $value) {
             $usuario->$key = $value;
         }
         $usuario->save();
 
         $input = $request->only(['cep', 'pais', 'estado', 'cidade', 'bairro', 'endereco', 'complemento']);
-        foreach($input as $key => $value){
+        foreach ($input as $key => $value) {
             $endereco->$key = $value;
         }
         $endereco->save();
@@ -89,6 +89,11 @@ class PedidoController extends Controller
             'cartao_id' => $request->cartao,
             'valor' => $request->valor
         ]);
+
+        $carrinho = Carrinho::find($request->carrinho_id);
+        $carrinho->status = 0;
+        $carrinho->save();
+
         return redirect(route('pedido.pedido', $pedido->id));
     }
 
