@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <div class="row mt-4">
         <div class="col-3">
             <form action="{{ route('cartao.formulario') }}" method="get">
@@ -51,50 +52,55 @@
     @endif
 
     <!-- Modal -->
-    <x-cliente.cartao.modal>
-        <x-slot name="titulo">
-            <x-h1>{{ __('Card') }}</x-h1>
-        </x-slot>
-
-        <x-slot name="corpo">
-            <form action="{{ route('cartao.atualizar', $cartao->id) }}" method="post">
-                @csrf
-                @method('put')
-                <x-cliente.cartao.base>
-                    <x-slot name="tipo">
-                        <x-select class="form-select" id="tipo" name="tipo">
-                            <option value="credito">Crédito</option>
-                            <option value="debito">Debito</option>
-                        </x-select>
-                        <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
-                    </x-slot>
-
-                    <x-slot name="numero">
-                        <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text" name="numero" value="{{ $cartao->numero }}" required  autocomplete="numero"/>
-                        <x-input-error :messages="$errors->get('numero')" class="mt-2" />
-                    </x-slot>
-
-                    <x-slot name="cvc">
-                        <x-text-input id="cvc" class="block mt-1 w-full mt-2" type="text" name="cvc" value="{{ $cartao->cvc }}" required  autocomplete="cvc"/>
-                        <x-input-error :messages="$errors->get('cvc')" class="mt-2" />
-                    </x-slot>
-
-                    <x-slot name="validade">
-                        <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date" name="validade" value="{{ $cartao->validade }}" required  autocomplete="validade"/>
-                        <x-input-error :messages="$errors->get('validade')" class="mt-2" />
-                    </x-slot>
-                </x-cliente.cartao.base>
-
-                <x-primary-button>{{ __('Alter') }}</x-primary-button>
-            </form>
-
-            <x-slot name="footer">
-                <form action="{{ route("cartao.deletar", $cartao->id) }}" method="POST">
-                    @csrf
-                    <x-danger-button>{{ __('Delete') }}</x-danger-button>
-                </form>
+    @if ($cartoes->isNotEmpty())
+        <x-cliente.cartao.modal>
+            <x-slot name="titulo">
+                <x-h1>{{ __('Card') }}</x-h1>
             </x-slot>
-        </x-slot>
-    </x-cliente.cartao.modal>
+
+            <x-slot name="corpo">
+                <form action="{{ route('cartao.atualizar', $cartao->id) }}" method="post">
+                    @csrf
+                    @method('put')
+                    <x-cliente.cartao.base>
+                        <x-slot name="tipo">
+                            <x-select class="form-select" id="tipo" name="tipo">
+                                <option value="credito">Crédito</option>
+                                <option value="debito">Debito</option>
+                            </x-select>
+                            <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
+                        </x-slot>
+
+                        <x-slot name="numero">
+                            <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text" name="numero"
+                                value="{{ $cartao->numero }}" required autocomplete="numero" />
+                            <x-input-error :messages="$errors->get('numero')" class="mt-2" />
+                        </x-slot>
+
+                        <x-slot name="cvc">
+                            <x-text-input id="cvc" class="block mt-1 w-full mt-2" type="text" name="cvc"
+                                value="{{ $cartao->cvc }}" required autocomplete="cvc" />
+                            <x-input-error :messages="$errors->get('cvc')" class="mt-2" />
+                        </x-slot>
+
+                        <x-slot name="validade">
+                            <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date" name="validade"
+                                value="{{ $cartao->validade }}" required autocomplete="validade" />
+                            <x-input-error :messages="$errors->get('validade')" class="mt-2" />
+                        </x-slot>
+                    </x-cliente.cartao.base>
+
+                    <x-primary-button>{{ __('Alter') }}</x-primary-button>
+                </form>
+
+                <x-slot name="footer">
+                    <form action="{{ route('cartao.deletar', $cartao->id) }}" method="POST">
+                        @csrf
+                        <x-danger-button>{{ __('Delete') }}</x-danger-button>
+                    </form>
+                </x-slot>
+            </x-slot>
+        </x-cliente.cartao.modal>
+    @endif
 
 </x-app-layout>
