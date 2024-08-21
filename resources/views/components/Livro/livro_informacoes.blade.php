@@ -46,6 +46,7 @@
                         @csrf
                         <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id"
                             :value="'livro'" />
+                            <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id" :value="$livro->id" />
                         <x-primary-button>{{ __('Order') }}</x-primary-button>
                     </form>
                 </div>

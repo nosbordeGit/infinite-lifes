@@ -67,49 +67,49 @@
                             <div class="col-md-3">
                                 <x-input-label for="cep" :value="__('CEP')" />
                                 <x-text-input id="cep" class="block mt-1 w-full" type="text" name="cep"
-                                    value="{{ $carrinho->cliente->usuario?->endereco->cep }}" autocomplete="cep" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->cep }}" autocomplete="cep" />
                                 <x-input-error :messages="$errors->get('cep')" class="mt-2" />
                             </div>
 
                             <div class="col-md-5">
                                 <x-input-label for="pais" :value="__('endereco.Country')" />
                                 <x-text-input id="pais" class="block mt-1 w-full" type="text" name="pais"
-                                    value="{{ $carrinho->cliente->usuario?->endereco->pais }}" autocomplete="pais" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->pais }}" autocomplete="pais" />
                                 <x-input-error :messages="$errors->get('pais')" class="mt-2" />
                             </div>
 
                             <div class="col-md-4">
                                 <x-input-label for="estado" :value="__('endereco.State')" />
                                 <x-text-input id="estado" class="block mt-1 w-full" type="text" name="estado"
-                                    value="{{ $carrinho->cliente->usuario?->endereco->estado }}" autocomplete="estado" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->estado }}" autocomplete="estado" />
                                 <x-input-error :messages="$errors->get('estado')" class="mt-2" />
                             </div>
 
                             <div class="col-md-5">
                                 <x-input-label for="cidade" :value="__('endereco.City')" />
                                 <x-text-input id="cidade" class="block mt-1 w-full" type="text" name="cidade"
-                                    value="{{ $carrinho->cliente->usuario?->endereco->estado }}" autocomplete="cidade" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->estado }}" autocomplete="cidade" />
                                 <x-input-error :messages="$errors->get('cidade')" class="mt-2" />
                             </div>
 
                             <div class="col-md-7">
                                 <x-input-label for="bairro" :value="__('endereco.Neighborhood')" />
                                 <x-text-input id="bairro" class="block mt-1 w-full" type="text" name="bairro"
-                                    value="{{ $carrinho->cliente->usuario?->endereco->bairro }}" autocomplete="bairro" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->bairro }}" autocomplete="bairro" />
                                 <x-input-error :messages="$errors->get('bairro')" class="mt-2" />
                             </div>
 
                             <div class="col-md-12">
                                 <x-input-label for="endereco" :value="__('endereco.Address')" />
                                 <x-text-input id="endereco" class="block mt-1 w-full" type="text" name="endereco"
-                                    value="{{ $carrinho->cliente->usuario?->endereco->endereco }}" autocomplete="endereco" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->endereco }}" autocomplete="endereco" />
                                 <x-input-error :messages="$errors->get('endereco')" class="mt-2" />
                             </div>
 
                             <div class="col-md-12">
                                 <x-input-label for="complemento" :value="__('Complement')" />
                                 <x-text-input id="complemento" class="block mt-1 w-full" type="text" name="complemento"
-                                    value="{{ $carrinho->cliente->usuario?->endereco->complemento }}" autocomplete="complemento" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->complemento }}" autocomplete="complemento" />
                                 <x-input-error :messages="$errors->get('complemento')" class="mt-2" />
                             </div>
 

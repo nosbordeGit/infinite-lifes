@@ -21,6 +21,6 @@ class carrinho extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cliente.pedido.carrinho');
+        return view('cliente.pedido.notinha');
     }
 }

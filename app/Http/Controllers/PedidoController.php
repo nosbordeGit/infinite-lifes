@@ -26,8 +26,10 @@ class PedidoController extends Controller
     {
         $cliente = Auth::user()->cliente;
         if ($request->input('tipo_id') == 'livro') {
-            $livro = Livro::find($request->id);
-            return view('cliente.pedido.formulario', compact('livro'));
+            $carrinho = $cliente->carrinhos()->create();
+            $livro = Livro::find($request->livro_id);
+            $carrinho->livros()->attach($livro->id);
+            return view('cliente.pedido.formulario', compact('carrinho'));
         } else {
             $carrinho = Carrinho::find($request->id);
             return view('cliente.pedido.formulario', compact('carrinho'));
