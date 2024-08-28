@@ -42,11 +42,22 @@
             }) }}</strong>
         </li>
 
-        <form action="{{ route('pedido.formulario') }}" method="get">
-            <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id" :value="'favoritos'" />
-            <x-text-input id="cliente_id" class="block mt-1 w-full" type="hidden" name="cliente_id"
-                :value="$favorito->cliente->id" />
-            <x-primary-button class="mt-3">{{ __('Order') }}</x-primary-button>
-        </form>
+        <div class="row mt-4">
+            <div class="col-4">
+                <form action="{{ route('pedido.formulario') }}" method="get">
+                    <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id"
+                        :value="'favoritos'" />
+                    <x-text-input id="cliente_id" class="block mt-1 w-full" type="hidden" name="cliente_id"
+                        :value="$favorito->cliente->id" />
+                    <x-primary-button>{{ __('Order') }}</x-primary-button>
+                </form>
+            </div>
+
+            <div class="col-4">
+                <form action="{{ route('favorito.remover') }}" method="GET">
+                    <x-danger-button>{{ __('Remove') }}</x-danger-button>
+                </form>
+            </div>
+        </div>
     </ul>
 </div>

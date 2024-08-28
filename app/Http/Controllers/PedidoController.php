@@ -48,10 +48,11 @@ class PedidoController extends Controller
                 $favorito = Favorito::find($request->favorito_id);
                 $carrinho->livros()->attach($favorito->livro_id);
             } else {
-                $favorito = $cliente->favoritos()->get();
-                $carrinho->livros()->attach($favorito);
+                $favoritos = $cliente->favoritos()->get();
+                foreach ($favoritos as $favorito)
+                    $carrinho->livros()->attach($favorito->livro_id);
             }
-            //dd($carrinho, $carrinho->livros);
+            //dd($carrinho, $carrinho->livros, $favoritos);
             return view('cliente.pedido.formulario', compact('carrinho'));
         }
 
