@@ -31,11 +31,15 @@ class FavoritoController extends Controller
             }
         }
 
-        return redirect(route('favorito.index'));
+        return redirect()->back();
     }
 
     public function store(Request $request): RedirectResponse
     {
-        return redirect(route('favorito.index'));
+        $cliente = Auth::user()->cliente;
+        $favorito = $cliente->favoritos()->create([
+            'livro_id' => $request->livro_id
+        ]);
+        return redirect()->back();
     }
 }

@@ -8,20 +8,22 @@
             </div>
 
             <div class="row mt-2">
-                <div class="col-6">
+                <div class="col-4">
                     @php
                         if (Auth::check() && Auth::user()->cliente) {
                             $cliente = Auth::user()->cliente;
                             $carrinho = $cliente->carrinhos->firstWhere('status', 1);
                             if ($carrinho != null) {
                                 $temNoCarrinho = $carrinho
-                                ->livros()
-                                ->where('livro_id', $livro->id)
-                                ->first();
-                            }else{
+                                    ->livros()
+                                    ->where('livro_id', $livro->id)
+                                    ->first();
+                            } else {
                                 $temNoCarrinho = null;
                             }
 
+                            $favorito = $cliente->favoritos->firstWhere('livro_id', $livro->id);
+                            //dd($favorito);
                         } else {
                             $temNoCarrinho = null;
                         }
@@ -46,11 +48,26 @@
                             <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id"
                                 :value="$livro->id" />
                             <x-danger-button>{{ __('Remove') }}</x-danger-button>
-
                         </form>
                     @endif
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                    @if ($favorito == null)
+                        <form action="{{ route('favorito.adicionar') }}" method="POST">
+                            @csrf
+                            <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id"
+                                :value="$livro->id" />
+                            <x-primary-button>{{ __('Favorite') }}</x-primary-button>
+                        </form>
+                    @else
+                        <form action="{{ route('favorito.remover') }}" method="GET">
+                            <x-text-input id="favorito_id" class="block mt-1 w-full" type="hidden" name="favorito_id"
+                                :value="$favorito->id" />
+                            <x-danger-button>{{ __('Unfavorite') }}</x-danger-button>
+                        </form>
+                    @endif
+                </div>
+                <div class="col-4">
                     <form action="{{ route('pedido.formulario') }}" method="GET">
                         @csrf
                         <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id"
