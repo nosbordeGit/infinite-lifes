@@ -9,9 +9,9 @@
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">{{ $favorito->livro->titulo }}</h6>
-                    <small class="text-body-secondary">Idioma: {{ $favorito->livro->idioma }}</small>
-                    <small class="text-body-secondary">Edição: {{ $favorito->livro->edicao }}</small>
-                    <small class="text-body-secondary">Vendedor: {{ $favorito->livro->vendedor->empresa }}</small>
+                    <small class="text-body-secondary">{{ __('Language') }}: {{ $favorito->livro->idioma }}</small>
+                    <small class="text-body-secondary">{{ __('Edition') }}: {{ $favorito->livro->edicao }}</small>
+                    <small class="text-body-secondary">{{ __('Vendor') }}: {{ $favorito->livro->vendedor->empresa }}</small>
                     <div class="row">
                         <div class="col-4">
                             <form action="{{ route('pedido.formulario') }}" method="GET">
