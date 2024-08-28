@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
+use App\Models\Favorito;
 use App\Models\Livro;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -35,13 +36,22 @@ class PedidoController extends Controller
     public function create(Request $request)
     {
         $cliente = Auth::user()->cliente;
-        if ($request->input('tipo_id') == 'livro') {
-            $carrinho = $cliente->carrinhos()->create();
-            $livro = Livro::find($request->livro_id);
-            $carrinho->livros()->attach($livro->id);
+        if ($request->input('tipo_id') == 'carrinho') {
+            $carrinho = Carrinho::find($request->id);
             return view('cliente.pedido.formulario', compact('carrinho'));
         } else {
-            $carrinho = Carrinho::find($request->id);
+            $carrinho = $cliente->carrinhos()->create();
+            if ($request->input('tipo_id') == 'livro') {
+                $livro = Livro::find($request->livro_id);
+                $carrinho->livros()->attach($livro->id);
+                return view('cliente.pedido.formulario', compact('carrinho'));
+            } elseif ($request->input('tipo_id') == 'favorito') {
+                $favorito = Favorito::find($request->favorito_id);
+                $carrinho->livros()->attach($favorito->livro_id);
+            } else {
+                $favorito = $cliente->favoritos()->get();
+                $carrinho->livros()->attach($favorito);
+            }
             return view('cliente.pedido.formulario', compact('carrinho'));
         }
 
