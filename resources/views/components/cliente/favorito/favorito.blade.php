@@ -1,10 +1,7 @@
 @props(['favorito'])
 
 <div class="col-md-6 col-lg-12 order-md-last">
-    <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-primary">{{ __('Your cart') }}</span>
-        <span class="badge bg-primary rounded-pill">{{ $favorito->count() }}</span>
-    </h4>
+
     <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
@@ -36,15 +33,5 @@
             </div>
             <span class="text-body-secondary">R${{ $favorito->livro->valor }}</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between">
-            <span>Total (Real)</span>
-            <strong>R${{ $favorito->sum('valor') }}</strong>
-        </li>
-
-        <form action="{{ route('pedido.formulario') }}" method="get">
-            <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id" :value="'favorito'" />
-            <x-text-input id="id" class="block mt-1 w-full" type="hidden" name="id" :value="$favorito->id" />
-            <x-primary-button class="mt-3">{{ __('Order') }}</x-primary-button>
-        </form>
     </ul>
 </div>
