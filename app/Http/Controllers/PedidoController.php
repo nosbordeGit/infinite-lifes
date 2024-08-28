@@ -44,7 +44,6 @@ class PedidoController extends Controller
             if ($request->input('tipo_id') == 'livro') {
                 $livro = Livro::find($request->livro_id);
                 $carrinho->livros()->attach($livro->id);
-                return view('cliente.pedido.formulario', compact('carrinho'));
             } elseif ($request->input('tipo_id') == 'favorito') {
                 $favorito = Favorito::find($request->favorito_id);
                 $carrinho->livros()->attach($favorito->livro_id);
@@ -52,6 +51,7 @@ class PedidoController extends Controller
                 $favorito = $cliente->favoritos()->get();
                 $carrinho->livros()->attach($favorito);
             }
+            //dd($carrinho, $carrinho->livros);
             return view('cliente.pedido.formulario', compact('carrinho'));
         }
 
