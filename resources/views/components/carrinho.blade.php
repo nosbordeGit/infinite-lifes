@@ -2,7 +2,7 @@
 
 <div class="col-md-6 col-lg-12 order-md-last">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-primary">{{ __('Your cart') }}</span>
+        <span class="text-primary">{{ __('Your carts') }}</span>
         <span class="badge bg-primary rounded-pill">{{ $carrinho->livros->count() }}</span>
     </h4>
     <ul class="list-group mb-3">

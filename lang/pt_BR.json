@@ -38,6 +38,7 @@
     "Card": "Cartão",
     "Cancel": "Cancelar",
     "Cart": "Carrinho",
+    "Carts": "Carrinhos",
     "Click here to re-send the verification email.": "Clique aqui para reenviar o e-mail de verificação.",
     "Close": "Fechar",
     "Code": "Código",
@@ -178,7 +179,8 @@
     "Vendor": "Vendedor",
     "Verify Email Address": "Verificar E-mail",
     "Verify Your Email Address": "Verifique seu endereço de e-mail",
-    "Visited": "Visitados",
+    "Visiteds": "Visitados",
+    "Visited on": "Visitado em",
     "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.": "Quando a autenticação de dois fatores estiver habilitada, você será solicitado a fornecer um token aleatório seguro durante a autenticação. Você pode recuperar esse token do aplicativo Google Authenticator do seu telefone.",
     "Whoops! Something went wrong.": "Opa! Algo deu errado.",
     "years": "anos",
@@ -191,5 +193,7 @@
     "You have not enabled two factor authentication.": "Você ainda não habilitou a autenticação de dois fatores.",
     "You may delete any of your existing tokens if they are no longer needed.": "Você deve deletar os tokens sem utilização.",
     "Your cart": "Seu carrinho",
-    "Your email address is unverified.": "Seu endereço de e-mail não foi verificado."
+    "Your carts": "Seus carrinhos",
+    "Your email address is unverified.": "Seu endereço de e-mail não foi verificado.",
+    "Your visiteds": "Seus visitados"
 }

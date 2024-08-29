@@ -27,9 +27,9 @@
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Stock') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Sales') }}</x-dropdown-link>
                             @elseif (Auth::user()->cliente)
-                                <x-dropdown-link class="dropdown-item" href="{{ route('carrinho.index') }}">{{ __('Cart') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('carrinho.index') }}">{{ __('Carts') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="{{ route('favorito.index') }}">{{ __('Favorites') }}</x-dropdown-link>
-                                <x-dropdown-link class="dropdown-item" href="{{ route('visitado.index') }}">{{ __('Visited') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('visitado.index') }}">{{ __('Visiteds') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="{{ route('cartao.index') }}">{{ __('Card') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="{{ route('pedido.index') }}">{{ __('Orders') }}</x-dropdown-link>
                             @else
