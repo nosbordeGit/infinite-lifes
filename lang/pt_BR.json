@@ -51,6 +51,8 @@
     "Create Account": "Criar Conta",
     "Create New Team": "Criar um novo Time",
     "Created.": "Criado.",
+    "Created on": "Criado em",
+    "Updated on": "Atualizado em",
     "Current Password": "Senha Atual",
     "Dashboard": "Painel de controle",
     "Date of publication": "Data da publicação",
@@ -104,6 +106,7 @@
     "No visited found": "Nenhum livro visitado ainda",
     "of": "de",
     "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos permanentemente. Antes de excluir sua conta, baixe todos os dados ou informações que deseja reter.",
+    "Open": "Abrir",
     "Order": "Pedido",
     "Orders": "Pedidos",
     "Password": "Senha",
@@ -198,5 +201,6 @@
     "Your cart": "Seu carrinho",
     "Your carts": "Seus carrinhos",
     "Your email address is unverified.": "Seu endereço de e-mail não foi verificado.",
+    "Your feedbacks": "Seus feedbacks",
     "Your visiteds": "Seus visitados"
 }
