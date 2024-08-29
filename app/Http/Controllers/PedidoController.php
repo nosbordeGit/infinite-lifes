@@ -44,10 +44,7 @@ class PedidoController extends Controller
             if ($request->input('tipo_id') == 'livro') {
                 $livro = Livro::find($request->livro_id);
                 $carrinho->livros()->attach($livro->id);
-            } elseif ($request->input('tipo_id') == 'favorito') {
-                $favorito = Favorito::find($request->favorito_id);
-                $carrinho->livros()->attach($favorito->livro_id);
-            } else {
+            } elseif($request->input('tipo_id') == 'favoritos') {
                 $favoritos = $cliente->favoritos()->get();
                 foreach ($favoritos as $favorito)
                     $carrinho->livros()->attach($favorito->livro_id);

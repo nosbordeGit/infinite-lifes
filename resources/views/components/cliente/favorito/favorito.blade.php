@@ -16,9 +16,9 @@
                         <div class="col-4">
                             <form action="{{ route('pedido.formulario') }}" method="GET">
                                 <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id"
-                                    :value="'favorito'" />
-                                <x-text-input id="favorito_id" class="block mt-1 w-full" type="hidden"
-                                    name="favorito_id" :value="$favorito->id" />
+                                    :value="'livro'" />
+                                <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden"
+                                    name="livro_id" :value="$favorito->livro->id" />
                                 <x-primary-button>{{ __('Order') }}</x-primary-button>
                             </form>
                         </div>
