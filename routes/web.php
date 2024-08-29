@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\CartaoController;
 use App\Http\Controllers\FavoritoController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
@@ -60,6 +61,11 @@ Route::controller(FavoritoController::class)->group(function(){
     Route::get('/favoritos-index', 'index')->name('favorito.index');
     Route::get('/favorito-remover', 'remover')->name('favorito.remover');
     Route::post('/favorito-adicionar', 'store')->name('favorito.adicionar');
+});
+
+//Rotas do FeedbackController
+Route::controller(FeedbackController::class)->group(function(){
+    Route::get('/feedback-index', 'index')->name('feedback.index');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
