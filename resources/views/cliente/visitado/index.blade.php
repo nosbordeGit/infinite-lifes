@@ -9,7 +9,7 @@
         @if ($visitados->isNotEmpty())
             <x-cliente.visitado.index :visitados="$visitados"></x-cliente.visitado.index>
         @else
-            <x-h1 class="mt-5">{{ __('No visiteds found') }}</x-h1>
+            <x-h1 class="mt-5">{{ __('No visited found') }}</x-h1>
         @endif
     </div>
 </x-app-layout>

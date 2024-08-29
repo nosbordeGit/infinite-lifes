@@ -11,7 +11,7 @@
                 <x-carrinho :carrinho="$carrinho"></x-carrinho>
             @endforeach
         @else
-        <x-h1 class="mt-5">{{ __('No carts found') }}</x-h1>
+        <x-h1 class="mt-5">{{ __('No cart found') }}</x-h1>
         @endif
     </div>
 </x-app-layout>
