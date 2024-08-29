@@ -26,6 +26,7 @@
                             //dd($favorito);
                         } else {
                             $temNoCarrinho = null;
+                            $favorito = null;
                         }
                     @endphp
 
