@@ -10,7 +10,7 @@
         @csrf
 
         <div class="d-flex justify-content-center container mt-5">
-            <x-cartao.base class="col-md-4">
+            <x-cliente.cartao.base class="col-md-4">
                 <x-slot name="tipo">
                     <x-select class="form-select" id="tipo" name="tipo">
                         <option value="credito">Crédito</option>
@@ -20,20 +20,23 @@
                 </x-slot>
 
                 <x-slot name="numero">
-                    <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text" name="numero" :value="old('numero')" placeholder="1234 5678 1234 4321" required  autocomplete="numero"/>
+                    <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text" name="numero"
+                        :value="old('numero')" placeholder="1234 5678 1234 4321" required autocomplete="numero" />
                     <x-input-error :messages="$errors->get('numero')" class="mt-2" />
                 </x-slot>
 
                 <x-slot name="cvc">
-                    <x-text-input id="cvc" class="block mt-1 w-full mt-2" type="text" name="cvc" :value="old('cvc')" placeholder="123 ou 1234" required  autocomplete="cvc"/>
+                    <x-text-input id="cvc" class="block mt-1 w-full mt-2" type="text" name="cvc"
+                        :value="old('cvc')" placeholder="123 ou 1234" required autocomplete="cvc" />
                     <x-input-error :messages="$errors->get('cvc')" class="mt-2" />
                 </x-slot>
 
                 <x-slot name="validade">
-                    <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date" name="validade" :value="old('validade')" required  autocomplete="validade"/>
+                    <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date" name="validade"
+                        :value="old('validade')" required autocomplete="validade" />
                     <x-input-error :messages="$errors->get('validade')" class="mt-2" />
                 </x-slot>
-            </x-cartao.base>
+            </x-cliente.cartao.base>
         </div>
 
         <div class="d-flex justify-content-center container mt-1">

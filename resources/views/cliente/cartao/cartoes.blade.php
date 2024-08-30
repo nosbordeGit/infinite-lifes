@@ -1,20 +1,17 @@
 <x-app-layout>
 
-    <div class="row mt-4">
-        <div class="col-3">
-            <form action="{{ route('cartao.formulario') }}" method="get">
-                <x-primary-button class="ms-3">
-                    {{ __('Add') }}
-                </x-primary-button>
-            </form>
-        </div>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Registered Cards') }}
+        </h2>
+    </x-slot>
 
-        <x-slot name="header">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Registered Cards') }}
-            </h2>
-        </x-slot>
-    </div>
+
+    <form action="{{ route('cartao.formulario') }}" method="get">
+        <x-primary-button class="ms-3">
+            {{ __('Add') }}
+        </x-primary-button>
+    </form>
 
     @if ($cartoes->isNotEmpty())
         <div class="container">
