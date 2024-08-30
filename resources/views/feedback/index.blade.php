@@ -8,11 +8,9 @@
     @if (!Auth::user()->administrador)
         <div class="row mt-4">
             <div class="col-3">
-                <form action="{{ route('cartao.formulario') }}" method="get">
-                    <x-primary-button class="ms-3">
-                        {{ __('Add') }}
-                    </x-primary-button>
-                </form>
+                <x-primary-button class="ms-3" type="button" data-bs-toggle="modal" data-bs-target="#baseModal">
+                    {{ __('Add') }}
+                </x-primary-button>
             </div>
         </div>
     @endif
@@ -24,4 +22,10 @@
             <x-h1 class="mt-5">{{ __('No feedbacks found') }}</x-h1>
         @endif
     </div>
+
+    <x-modal.baseScroll>
+        <x-slot name="titulo"></x-slot>
+        <x-slot name="corpo"></x-slot>
+        <x-slot name="footer"></x-slot>
+    </x-modal.baseScroll>
 </x-app-layout>
