@@ -6,7 +6,7 @@
             <span class="badge bg-primary rounded-pill">{{ $favoritos->count() }}</span>
         </h4>
         @foreach ($favoritos as $favorito)
-            <li class="list-group-item d-flex justify-content-between lh-sm">
+            <li class="list-group-item d-flex justify-content-between lh-sm mt-1">
                 <div>
                     <h6 class="my-0">{{ $favorito->livro->titulo }}</h6>
                     <small class="text-body-secondary">{{ __('Language') }}: {{ $favorito->livro->idioma }}</small>
