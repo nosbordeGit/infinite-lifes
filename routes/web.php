@@ -66,6 +66,7 @@ Route::controller(FavoritoController::class)->group(function(){
 //Rotas do FeedbackController
 Route::controller(FeedbackController::class)->group(function(){
     Route::get('/feedback-index', 'index')->name('feedback.index');
+    Route::post('/feedback-adicionar', 'store')->name('feedback.store');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
