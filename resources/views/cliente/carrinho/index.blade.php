@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container mt-3">
+    <div class="container">
         @if ($carrinhos->isNotEmpty())
             @foreach ($carrinhos as $carrinho)
                 <x-carrinho :carrinho="$carrinho"></x-carrinho>

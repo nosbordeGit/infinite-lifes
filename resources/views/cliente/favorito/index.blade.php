@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container mt-3">
+    <div class="container">
         @if ($favoritos->isNotEmpty())
 
                 <x-cliente.favorito.favorito :favoritos="$favoritos"></x-cliente.favorito.favorito>

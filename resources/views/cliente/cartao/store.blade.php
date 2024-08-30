@@ -9,7 +9,7 @@
     <form method="POST" action="{{ route('cartao.store') }}">
         @csrf
 
-        <div class="d-flex justify-content-center container mt-5">
+        <div class="d-flex justify-content-center container">
             <x-cliente.cartao.base class="col-md-4">
                 <x-slot name="tipo">
                     <x-select class="form-select" id="tipo" name="tipo">
@@ -44,6 +44,5 @@
                 <x-primary-button>Cadastrar</x-primary-button>
             </div>
         </div>
-
     </form>
 </x-app-layout>

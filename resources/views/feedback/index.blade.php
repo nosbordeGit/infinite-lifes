@@ -6,7 +6,7 @@
     </x-slot>
 
     @if (!Auth::user()->administrador)
-        <div class="row mt-4">
+        <div class="row">
             <div class="col-3">
                 <x-primary-button class="ms-3" type="button" data-bs-toggle="modal" data-bs-target="#baseModal">
                     {{ __('Add') }}

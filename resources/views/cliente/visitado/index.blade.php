@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container mt-3">
+    <div class="container">
         @if ($visitados->isNotEmpty())
             <x-cliente.visitado.index :visitados="$visitados"></x-cliente.visitado.index>
         @else
