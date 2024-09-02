@@ -21,11 +21,8 @@
                         {{ $feedback->updated_at }}</small>
 
                     <div class="col-4">
-                        <form action="{{}}" method="GET">
-                            <x-text-input id="feedback_id" class="block mt-1 w-full" type="hidden" name="feedback_id"
-                                :value="$feedback->id" />
-                            <x-primary-button>{{ __('Open') }}</x-primary-button>
-                        </form>
+                            <x-primary-button type="button" data-bs-toggle="modal"
+                                data-bs-target="#baseModal">{{ __('Open') }}</x-primary-button>
                     </div>
                 </div>
                 <span class="text-body-secondary">{{ __('Status') }}: {{ $feedback->status }}</span>
@@ -33,3 +30,20 @@
         @endforeach
     </ul>
 </div>
+
+<x-modal.baseScroll>
+    <x-slot name="titulo">{{ __('Feedback Open') }}</x-slot>
+    <x-slot name="corpo">
+        <div class="mt-4">
+            <x-input-label for="titulo" value="{{ $feedback->titulo }}" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="corpo" value="{{ $feedback->corpo }}" />
+        </div>
+    </x-slot>
+    <x-slot name="footer">
+        @if (Auth::user()->administrador)
+            <x-primary-button>{{ __('Alter') }}</x-primary-button>
+        @endif
+    </x-slot>
+</x-modal.baseScroll>
