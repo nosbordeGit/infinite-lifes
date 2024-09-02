@@ -38,7 +38,7 @@
 
                         <div class="d-grid gap-2 col-5 mx-auto shadow">
                             <x-primary-button type="button" data-bs-toggle="modal"
-                                data-bs-target="#baseModal">{{ __('Informations') }}</x-primary-button>
+                                data-bs-target="#baseModal{{ $cartao->id }}">{{ __('Informations') }}</x-primary-button>
                         </div>
                     </div>
                 @endforeach
@@ -50,7 +50,7 @@
 
     <!-- Modal -->
     @if ($cartoes->isNotEmpty())
-        <x-modal.baseScroll>
+        <x-modal.baseScroll :modal-id="$cartao->id">
             <x-slot name="titulo">
                 <x-h1>{{ __('Card') }}</x-h1>
             </x-slot>

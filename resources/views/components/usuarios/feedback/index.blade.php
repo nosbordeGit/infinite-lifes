@@ -22,7 +22,7 @@
 
                     <div class="col-4">
                             <x-primary-button type="button" data-bs-toggle="modal"
-                                data-bs-target="#baseModal">{{ __('Open') }}</x-primary-button>
+                                data-bs-target="#baseModal{{ $feedback->id }}">{{ __('Open') }}</x-primary-button>
                     </div>
                 </div>
                 <span class="text-body-secondary">{{ __('Status') }}: {{ $feedback->status }}</span>
@@ -31,7 +31,7 @@
     </ul>
 </div>
 
-<x-modal.baseScroll>
+<x-modal.baseScroll :modal-id="$feedback->id">
     <x-slot name="titulo">{{ __('Feedback Open') }}</x-slot>
     <x-slot name="corpo">
         <div class="mt-4">
