@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Livro;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -19,7 +20,13 @@ class SiteController extends Controller
 
     public function livro($titulo = null ,$id): View {
         $livro = Livro::find($id);
-        //dd($livro);
+        if(Auth::check() && Auth::user()->cliente){
+            $cliente = Auth::user()->cliente;
+            $cliente->visitados()->create([
+                'livro_id' => $livro->id
+            ]);
+        }
+
         return view('site.livro', compact('livro'));
     }
 }

@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             FavoritoSeeder::class,
             CartaoSeeder::class,
             CarrinhoSeeder::class,
-            PedidoSeeder::class
+            PedidoSeeder::class,
+            FeedbackSeeder::class
         ]);
 
     }

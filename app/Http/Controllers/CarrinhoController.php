@@ -16,9 +16,8 @@ class CarrinhoController extends Controller
     public function index(): View
     {
         $cliente = Auth::user()->cliente;
-        $carrinho = $cliente->carrinhos()->where('status', 1)->first();
-
-        return view('cliente.carrinho.index', compact('carrinho'));
+        $carrinhos = $cliente->carrinhos()->where('status', 1)->get();
+        return view('cliente.carrinho.index', compact('carrinhos'));
     }
 
     /**
@@ -36,7 +35,12 @@ class CarrinhoController extends Controller
     {
         $cliente = Auth::user()->cliente;
         $carrinho = $cliente->carrinhos()->where('status', 1)->first();
-        $carrinho->$cliente()->attach($request->livro_id);
+        if($carrinho == null){
+            $carrinho = $cliente->carrinhos()->create();
+        }
+        $carrinho->livros()->attach($request->livro_id);
+
+        return redirect()->back();
     }
 
     /**
@@ -69,9 +73,9 @@ class CarrinhoController extends Controller
     public function remover(Request $request): RedirectResponse
     {
         $cliente = Auth::user()->cliente;
-        $carrinho = $cliente->carrinhos()->where('status', 1)->first();
+        $carrinho = $cliente->carrinhos()->where('id', $request->carrinho_id)->first();
         $carrinho->livros()->detach($request->livro_id);
 
-        return redirect(route('carrinho.index'));
+        return redirect()->back();
     }
 }

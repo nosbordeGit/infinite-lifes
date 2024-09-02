@@ -3,9 +3,12 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\CartaoController;
+use App\Http\Controllers\FavoritoController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\VisitadoController;
 use Illuminate\Support\Facades\Route;
 
 //Rotas do SiteController
@@ -37,7 +40,7 @@ Route::middleware('auth')->controller(CartaoController::class)->group(function()
 Route::controller(CarrinhoController::class)->group(function(){
     Route::get('/carrinho-index', 'index')->name('carrinho.index');
     Route::get('/carrinho-remover', 'remover')->name('carrinho.remover');
-    Route::get('/carrinho-adicionar', 'store')->name('carrinho.adicionar');
+    Route::post('/carrinho-adicionar', 'store')->name('carrinho.adicionar');
 });
 
 //Rotas do PedidoController
@@ -46,6 +49,24 @@ Route::controller(PedidoController::class)->group(function(){
     Route::get('/pedido-formulario', 'create')->name('pedido.formulario');
     Route::post('/pedido-cadastrar', 'store')->name('pedido.cadastrar');
     Route::get('/pedido-{id}', 'show')->name('pedido.pedido');
+});
+
+//Rotas do VisitadoController
+Route::controller(VisitadoController::class)->group(function(){
+    Route::get('/visitados-index', 'index')->name('visitado.index');
+});
+
+//Rotas do FavoritoController
+Route::controller(FavoritoController::class)->group(function(){
+    Route::get('/favoritos-index', 'index')->name('favorito.index');
+    Route::get('/favorito-remover', 'remover')->name('favorito.remover');
+    Route::post('/favorito-adicionar', 'store')->name('favorito.adicionar');
+});
+
+//Rotas do FeedbackController
+Route::controller(FeedbackController::class)->group(function(){
+    Route::get('/feedback-index', 'index')->name('feedback.index');
+    Route::post('/feedback-adicionar', 'store')->name('feedback.store');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])

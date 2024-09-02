@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
+use App\Models\Favorito;
 use App\Models\Livro;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +17,17 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->cliente) {
+            $cliente = Auth::user()->cliente;
+            $pedidos = $cliente->pedidos()->get();
+            return view('cliente.pedido.index', compact('pedidos'));
+        } else if (Auth::user()->transportadora) {
+            $transportadora = Auth::user()->transportadora;
+            $pedidos = $transportadora->pedidos()->get();
+            return view('cliente.pedido.index', compact('pedidos'));
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -25,11 +36,20 @@ class PedidoController extends Controller
     public function create(Request $request)
     {
         $cliente = Auth::user()->cliente;
-        if ($request->input('tipo_id') == 'livro') {
-            $livro = Livro::find($request->id);
-            return view('cliente.pedido.formulario', compact('livro'));
-        } else {
+        if ($request->input('tipo_id') == 'carrinho') {
             $carrinho = Carrinho::find($request->id);
+            return view('cliente.pedido.formulario', compact('carrinho'));
+        } else {
+            $carrinho = $cliente->carrinhos()->create();
+            if ($request->input('tipo_id') == 'livro') {
+                $livro = Livro::find($request->livro_id);
+                $carrinho->livros()->attach($livro->id);
+            } elseif($request->input('tipo_id') == 'favoritos') {
+                $favoritos = $cliente->favoritos()->get();
+                foreach ($favoritos as $favorito)
+                    $carrinho->livros()->attach($favorito->livro_id);
+            }
+            //dd($carrinho, $carrinho->livros, $favoritos);
             return view('cliente.pedido.formulario', compact('carrinho'));
         }
 
@@ -61,19 +81,19 @@ class PedidoController extends Controller
         $endereco = $usuario->endereco;
 
         $input = $request->only(['nome', 'sobrenome']);
-        foreach($input as $key => $value){
+        foreach ($input as $key => $value) {
             $cliente->$key = $value;
         }
         $cliente->save();
 
         $input = $request->only(['email', 'telefone']);
-        foreach($input as $key => $value){
+        foreach ($input as $key => $value) {
             $usuario->$key = $value;
         }
         $usuario->save();
 
         $input = $request->only(['cep', 'pais', 'estado', 'cidade', 'bairro', 'endereco', 'complemento']);
-        foreach($input as $key => $value){
+        foreach ($input as $key => $value) {
             $endereco->$key = $value;
         }
         $endereco->save();
@@ -83,6 +103,11 @@ class PedidoController extends Controller
             'cartao_id' => $request->cartao,
             'valor' => $request->valor
         ]);
+
+        $carrinho = Carrinho::find($request->carrinho_id);
+        $carrinho->status = 0;
+        $carrinho->save();
+
         return redirect(route('pedido.pedido', $pedido->id));
     }
 
