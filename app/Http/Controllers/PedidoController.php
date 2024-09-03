@@ -24,7 +24,7 @@ class PedidoController extends Controller
         } else if (Auth::user()->transportadora) {
             $transportadora = Auth::user()->transportadora;
             $pedidos = $transportadora->pedidos()->get();
-            return view('cliente.pedido.index', compact('pedidos'));
+            return view('transportadora.pedido.index', compact('pedidos'));
         }
 
         return redirect()->back();
@@ -121,7 +121,7 @@ class PedidoController extends Controller
             return view('cliente.pedido.pedido', compact('pedido'));
         }elseif(Auth::user()->transportadora){
             $pedido = Auth::user()->transportadora->pedidos()->firstWhere('id', $id);
-            return view('', compact('pedido'));
+            return view('transportadora.pedido.pedido', compact('pedido'));
         }
 
         return redirect()->back();

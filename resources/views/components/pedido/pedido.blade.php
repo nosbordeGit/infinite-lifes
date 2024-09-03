@@ -17,11 +17,13 @@
                 <span class="text-body-secondary">R${{ $livro->valor }}</span>
             </li>
         @endforeach
-        <li class="list-group-item d-flex justify-content-between">
-            <span>Total (Real)</span>
-            <strong>R${{ $pedido->valor }}</strong>
-            <span>{{ __('Carrier') }}</span>
-            <strong>{{ $pedido->transportadora->empresa }}</strong>
-        </li>
+        @if (Auth::user()->cliente)
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total (Real)</span>
+                <strong>R${{ $pedido->valor }}</strong>
+                <span>{{ __('Carrier') }}</span>
+                <strong>{{ $pedido->transportadora->empresa }}</strong>
+            </li>
+        @endif
     </ul>
 </div>
