@@ -7,7 +7,7 @@
     </h4>
     <ul class="list-group mb-3">
         @foreach ($carrinho->livros as $livro)
-            <li class="list-group-item d-flex justify-content-between lh-sm">
+            <li class="list-group-item d-flex justify-content-between lh-sm mb-1">
                 <div>
                     <h6 class="my-0">{{ $livro->titulo }}</h6>
                     <small class="text-body-secondary">Idioma: {{ $livro->idioma }}</small>
