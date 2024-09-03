@@ -5,5 +5,11 @@
         </h2>
     </x-slot>
 
-    <x-slot></x-slot>
+    <div class="container">
+        @if ($pedidos->isNotEmpty())
+            <x-pedido.index :pedidos="$pedidos"></x-pedido.index>
+        @else
+            <x-h1 class="mt-5">{{ __('No orders found') }}</x-h1>
+        @endif
+    </div>
 </x-app-layout>
