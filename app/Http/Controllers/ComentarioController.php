@@ -64,7 +64,14 @@ class ComentarioController extends Controller
      */
     public function atualizar(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'corpo' => ['required', 'string']
+        ]);
+
+        $comentario = Comentario::find($id);
+        $comentario->corpo = $request->corpo;
+        $comentario->save();
+        return redirect()->back();
     }
 
     /**
