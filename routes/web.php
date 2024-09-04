@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\CartaoController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PedidoController;
@@ -25,6 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::controller(ComentarioController::class)->group(function(){
+    Route::post('/comentario', 'store')->name('comentario.store');
+    Route::put('/comentario/{id}', 'atualizar')->name('comentario.atualizar');
+    Route::post('/comentario/{id}', 'deletar')->name('comentario.deletar');
 });
 
 //Rotas de CartaoController
