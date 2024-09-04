@@ -11,7 +11,7 @@
 
                     @if (Auth::check() && Auth::user()->cliente && $comentario->cliente_id == Auth::user()->cliente->id)
                         <div class="row mt-2">
-                            <div class="col-4 mr-3">
+                            <div class="col-4 me-4">
                                 <x-primary-button type="button" data-bs-toggle="modal"
                                     data-bs-target="#baseModal{{ $comentario->id }}">{{ __('Alter') }}</x-primary-button>
                                 </form>
