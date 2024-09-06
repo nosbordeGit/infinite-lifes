@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use PhpParser\Node\Stmt\Return_;
@@ -58,17 +59,19 @@ class CartaoController extends Controller
         $date = Carbon::now();
 
         $request->validate([
-            'cvc' => ['required', 'string', 'max:5', 'regex: /^[0-9]{3,4}$/'],
             'numero' => ['required', 'string', 'max:20', 'regex: /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/'],
             'validade' => ['required', 'date', 'after:' . $date],
             'tipo' => ['required', 'string']
         ]);
 
         $cliente = Auth::user()->cliente;
+
+        $numero_cartao_criptografado = Crypt::encryptString($request->numero);
+        $validade_criptografada = Crypt::encryptString($request->validade);
+
         $cartao = $cliente->cartoes()->create([
-            'cvc' => $request->cvc,
-            'numero' => $request->numero,
-            'validade' => $request->validade,
+            'numero' => $numero_cartao_criptografado,
+            'validade' => $validade_criptografada,
             'tipo' => $request->tipo
         ]);
 

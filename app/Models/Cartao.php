@@ -14,7 +14,6 @@ class Cartao extends Model
     protected $table = 'cartao';
     protected $fillable = [
         'numero',
-        'cvc',
         'validade',
         'tipo',
         'status',
@@ -28,8 +27,7 @@ class Cartao extends Model
     protected function casts() : array {
         return [
             'numero' => 'string',
-            'cvc' => 'string',
-            'validade' => 'date',
+            'validade' => 'string',
             'tipos' => 'string',
             'status' => 'boolean'
         ];

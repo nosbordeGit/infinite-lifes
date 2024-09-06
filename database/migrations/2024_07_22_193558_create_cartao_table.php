@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('cartao', function (Blueprint $table) {
             $table->id();
-            $table->string('numero', 20);
-            $table->string('cvc', 5);
+            $table->string('numero', 255);
             $table->string('tipo', 20);
-            $table->date('validade');
+            $table->string('validade', 255);
             $table->tinyInteger('status')->default(1);
             $table->foreignId('cliente_id')->constrained('cliente');
             $table->timestamps();
