@@ -27,6 +27,8 @@ class SiteController extends Controller
             ]);
         }
 
-        return view('site.livro', compact('livro'));
+        $comentarios = $livro->comentarios()->get();
+
+        return view('site.livro', compact(['livro', 'comentarios']));
     }
 }

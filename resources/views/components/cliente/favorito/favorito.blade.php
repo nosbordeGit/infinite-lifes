@@ -6,14 +6,14 @@
             <span class="badge bg-primary rounded-pill">{{ $favoritos->count() }}</span>
         </h4>
         @foreach ($favoritos as $favorito)
-            <li class="list-group-item d-flex justify-content-between lh-sm mt-1">
+            <li class="list-group-item d-flex justify-content-between lh-sm mb-1">
                 <div>
                     <h6 class="my-0">{{ $favorito->livro->titulo }}</h6>
                     <small class="text-body-secondary">{{ __('Language') }}: {{ $favorito->livro->idioma }}</small>
                     <small class="text-body-secondary">{{ __('Edition') }}: {{ $favorito->livro->edicao }}</small>
                     <small class="text-body-secondary">{{ __('Vendor') }}: {{ $favorito->livro->vendedor->empresa }}</small>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-4 me-1">
                             <form action="{{ route('pedido.formulario') }}" method="GET">
                                 <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="tipo_id"
                                     :value="'livro'" />

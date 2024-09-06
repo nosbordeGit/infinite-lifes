@@ -126,8 +126,4 @@
         </div>
 
     </div>
-
-    <div class="border-bottom border-light-subtle">
-        <h5><strong>{{ __('Comments') }}</strong></h5>
-    </div>
 </div>

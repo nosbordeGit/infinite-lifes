@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carrinho;
 use App\Models\Favorito;
 use App\Models\Livro;
+use App\Models\Pedido;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class PedidoController extends Controller
         } else if (Auth::user()->transportadora) {
             $transportadora = Auth::user()->transportadora;
             $pedidos = $transportadora->pedidos()->get();
-            return view('cliente.pedido.index', compact('pedidos'));
+            return view('transportadora.pedido.index', compact('pedidos'));
         }
 
         return redirect()->back();
@@ -44,7 +45,7 @@ class PedidoController extends Controller
             if ($request->input('tipo_id') == 'livro') {
                 $livro = Livro::find($request->livro_id);
                 $carrinho->livros()->attach($livro->id);
-            } elseif($request->input('tipo_id') == 'favoritos') {
+            } elseif ($request->input('tipo_id') == 'favoritos') {
                 $favoritos = $cliente->favoritos()->get();
                 foreach ($favoritos as $favorito)
                     $carrinho->livros()->attach($favorito->livro_id);
@@ -116,15 +117,27 @@ class PedidoController extends Controller
      */
     public function show(string $id)
     {
-        dd($id);
+        if (Auth::user()->cliente) {
+            $pedido = Auth::user()->cliente->pedidos()->firstWhere('id', $id);
+            return view('cliente.pedido.pedido', compact('pedido'));
+        }elseif(Auth::user()->transportadora){
+            $pedido = Auth::user()->transportadora->pedidos()->firstWhere('id', $id);
+            return view('transportadora.pedido.pedido', compact('pedido'));
+        }
+
+        return redirect()->back();
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editar(Request $request ,string $id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $pedido->status = $request->status;
+        $pedido->save();
+
+        return redirect(route('pedido.pedido', $id));
     }
 
     /**

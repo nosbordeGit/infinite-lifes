@@ -4,4 +4,12 @@
             {{ __('Order') }}
         </h2>
     </x-slot>
+
+    <div class="container">
+        <x-pedido.pedido :pedido="$pedido"></x-pedido.pedido>
+        <x-endereco :endereco="$pedido->carrinho->cliente->usuario->endereco"></x-endereco>
+        <form action="{{ route('pedido.index') }}" method="get">
+            <x-primary-button>{{ __('Back') }}</x-primary-button>
+        </form>
+    </div>
 </x-app-layout>

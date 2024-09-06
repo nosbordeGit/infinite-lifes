@@ -36,6 +36,7 @@
     "Customer": "Cliente",
     "click here to request another": "clique aqui para solicitar outro",
     "Card": "Cartão",
+    "Carrier": "Transportadora",
     "Cancel": "Cancelar",
     "Cart": "Carrinho",
     "Carts": "Carrinhos",
@@ -103,6 +104,7 @@
     "New Password": "Nova Senha",
     "No cart found": "Nehum carrinho encontrado",
     "No favorites found": "Nenhum favorito encontrado",
+    "No orders found": "Nenhum pedido encontrado",
     "No visited found": "Nenhum livro visitado ainda",
     "of": "de",
     "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos permanentemente. Antes de excluir sua conta, baixe todos os dados ou informações que deseja reter.",
@@ -152,6 +154,7 @@
     "Showing": "Mostrando",
     "Stock": "Estoque",
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Armazene esses códigos de recuperação em um local seguro. Eles podem ser utilizados para recuperar o acesso à sua conta caso você perca o seu telefone.",
+    "Store Comment": "Criar Comentário",
     "Switch Teams": "Mudar os Times",
     "to": "até",
     "The team's name and owner information.": "O nome do time e informações do proprietário.",
@@ -202,5 +205,6 @@
     "Your carts": "Seus carrinhos",
     "Your email address is unverified.": "Seu endereço de e-mail não foi verificado.",
     "Your feedbacks": "Seus feedbacks",
+    "Your orders": "Seus pedidos",
     "Your visiteds": "Seus visitados"
 }

@@ -8,7 +8,7 @@
     <div class="container">
         @if ($carrinhos->isNotEmpty())
             @foreach ($carrinhos as $carrinho)
-                <x-carrinho :carrinho="$carrinho"></x-carrinho>
+                <x-cliente.carrinho.carrinho :carrinho="$carrinho"></x-cliente.carrinho.carrinho>
             @endforeach
         @else
         <x-h1 class="mt-5">{{ __('No cart found') }}</x-h1>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\CartaoController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PedidoController;
@@ -10,6 +11,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\VisitadoController;
 use Illuminate\Support\Facades\Route;
+
+//Rotas do Cliente(Cartao, Carrinho, Comentario,Favorito, Feedback, Pedido, Visitado)
+//Rotas da Transportadora(Feedback e Pedido)
+//Rotas do Vendedor(Livro, Feedback)
+//Rotas do Administrador(Administrador, Feedback)
 
 //Rotas do SiteController
 Route::controller(SiteController::class)->group(function(){
@@ -25,6 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+Route::controller(ComentarioController::class)->group(function(){
+    Route::post('/comentario', 'store')->name('comentario.store');
+    Route::put('/comentario-atualizar/{id}', 'atualizar')->name('comentario.atualizar');
+    Route::post('/comentario-deletar/{id}', 'deletar')->name('comentario.deletar');
 });
 
 //Rotas de CartaoController
@@ -48,7 +61,8 @@ Route::controller(PedidoController::class)->group(function(){
     Route::get('/pedido-index', 'index')->name('pedido.index');
     Route::get('/pedido-formulario', 'create')->name('pedido.formulario');
     Route::post('/pedido-cadastrar', 'store')->name('pedido.cadastrar');
-    Route::get('/pedido-{id}', 'show')->name('pedido.pedido');
+    Route::get('/pedido/{id}', 'show')->name('pedido.pedido');
+    Route::put('/pedido/{id}', 'editar')->name('pedido.alterarStatus');
 });
 
 //Rotas do VisitadoController
@@ -68,6 +82,8 @@ Route::controller(FeedbackController::class)->group(function(){
     Route::get('/feedback-index', 'index')->name('feedback.index');
     Route::post('/feedback-adicionar', 'store')->name('feedback.store');
 });
+
+//Rotas do Vendedor
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
 ->name('sair');
