@@ -16,6 +16,7 @@ return  [
     'City' => 'Cidade',
     'Neighborhood' => 'Bairro',
     'Address' => 'Endereço',
+    'Delivery Address' => 'Endereço de Entrega',
 ];
 
 ?>

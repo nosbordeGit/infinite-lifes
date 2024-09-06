@@ -10,7 +10,9 @@
         <x-endereco :endereco="$pedido->carrinho->cliente->usuario->endereco"></x-endereco>
 
         <div class="mb-3">
-            <form action="" method="post">
+            <form action="{{ route('pedido.alterarStatus', $pedido->id) }}" method="post">
+                @csrf
+                @method('PUT')
                 <x-input-label for="status" class="form-label text-primary" :value="__('Status').': '.$pedido->status" />
                 <div class="row">
                     <div class="col-4">

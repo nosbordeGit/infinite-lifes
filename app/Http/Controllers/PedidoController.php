@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carrinho;
 use App\Models\Favorito;
 use App\Models\Livro;
+use App\Models\Pedido;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -130,9 +131,13 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editar(Request $request ,string $id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $pedido->status = $request->status;
+        $pedido->save();
+
+        return redirect(route('pedido.pedido', $id));
     }
 
     /**
