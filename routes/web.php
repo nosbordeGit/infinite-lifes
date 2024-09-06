@@ -12,6 +12,11 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\VisitadoController;
 use Illuminate\Support\Facades\Route;
 
+//Rotas do Cliente(Cartao, Carrinho, Comentario,Favorito, Feedback, Pedido, Visitado)
+//Rotas da Transportadora(Feedback e Pedido)
+//Rotas do Vendedor(Livro, Feedback)
+//Rotas do Administrador(Administrador, Feedback)
+
 //Rotas do SiteController
 Route::controller(SiteController::class)->group(function(){
     Route::get('/', 'site')->name('site');
@@ -27,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 Route::controller(ComentarioController::class)->group(function(){
     Route::post('/comentario', 'store')->name('comentario.store');
@@ -76,6 +82,8 @@ Route::controller(FeedbackController::class)->group(function(){
     Route::get('/feedback-index', 'index')->name('feedback.index');
     Route::post('/feedback-adicionar', 'store')->name('feedback.store');
 });
+
+//Rotas do Vendedor
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
 ->name('sair');
