@@ -21,6 +21,6 @@ class notinha extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.carrinho');
+        return view('components.cliente.carrinho.carrinho');
     }
 }
