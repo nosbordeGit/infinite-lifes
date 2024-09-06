@@ -4,7 +4,7 @@
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             @if (Auth::user()->cliente)
                 <span class="text-primary">{{ __('Your orders') }}</span>
-            @elseif(Auht::user()->transportadora)
+            @elseif(Auth::user()->transportadora)
                 <span class="text-primary">{{ __('Orders') }}</span>
             @endif
             <span class="badge bg-primary rounded-pill">{{ $pedidos->count() }}</span>

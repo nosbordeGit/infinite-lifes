@@ -14,7 +14,9 @@
                     <small class="text-body-secondary">{{ __('Edition') }}: {{ $livro->edicao }}</small>
                     <small class="text-body-secondary">{{ __('Company') }}: {{ $livro->vendedor->empresa }}</small>
                 </div>
-                <span class="text-body-secondary">R${{ $livro->valor }}</span>
+                @if (Auth::user()->cliente)
+                    <span class="text-body-secondary">R${{ $livro->valor }}</span>
+                @endif
             </li>
         @endforeach
         @if (Auth::user()->cliente)
