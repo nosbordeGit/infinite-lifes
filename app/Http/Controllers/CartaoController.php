@@ -21,16 +21,11 @@ class CartaoController extends Controller
         $cliente = Auth::user()->cliente;
         $cartoes = Cartao::where('status', 1)->where('cliente_id', $cliente->id)->get();
 
-        /*
         if($cartoes->isNotEmpty()){
             foreach ($cartoes as $cartao){
-                $numero_descriptografado = Crypt::decryptString($cartao->numero);
-                $validade_descriptografada = Crypt::decryptString($cartao->validade);
-                $cartao->numero = $numero_descriptografado;
-                $cartao->validade = $validade_descriptografada;
+                $this->descriptografar($cartao);
             }
         }
-        */
         return view('cliente.cartao.cartoes', compact('cartoes'));
     }
 
@@ -44,15 +39,14 @@ class CartaoController extends Controller
         $date = Carbon::now();
 
         $request->validate([
-            'cvc' => ['required', 'string', 'max:5', 'regex: /^[0-9]{3,4}$/'],
             'numero' => ['required', 'string', 'max:20', 'regex: /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/'],
             'validade' => ['required', 'date', 'after:' . $date],
             'tipo' => ['required', 'string']
         ]);
 
         $cartao = Cartao::find($id);
-        $entradas = $request->except('_token', '_method');
-
+        $entradas = $this->criptografrar($request);
+        $entradas = $entradas->except('_token', '_method');
         foreach ($entradas as $chave => $valor) {
             $cartao->$chave = $valor;
         }
@@ -82,16 +76,31 @@ class CartaoController extends Controller
         ]);
 
         $cliente = Auth::user()->cliente;
-
-        $numero_cartao_criptografado = Crypt::encryptString($request->numero);
-        $validade_criptografada = Crypt::encryptString($request->validade);
-
+        $request = $this->criptografrar($request);
         $cartao = $cliente->cartoes()->create([
-            'numero' => $numero_cartao_criptografado,
-            'validade' => $validade_criptografada,
+            'numero' => $request->numero,
+            'validade' => $request->validade,
             'tipo' => $request->tipo
         ]);
 
         return redirect(route('cartao.index'));
+    }
+
+    public function descriptografar($request) {
+        $numero_descriptografado = Crypt::decryptString($request->numero);
+        $numero_descriptografado = substr_replace($numero_descriptografado, ' **** **** ', 4, -4);
+        $validade_descriptografada = Crypt::decryptString($request->validade);
+        $request->numero = $numero_descriptografado;
+        $request->validade = $validade_descriptografada;
+
+        return;
+    }
+
+    public function criptografrar($request){
+        $numero = Crypt::encryptString($request->numero);
+        $validade = Crypt::encryptString($request->validade);
+
+        $request->merge(['numero' => $numero, 'validade' => $validade]);
+        return $request;
     }
 }
