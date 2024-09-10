@@ -90,21 +90,4 @@ class CartaoController extends Controller
         return redirect(route('cartao.index'));
     }
 
-    public function descriptografar($request) {
-        $numero_descriptografado = Crypt::decryptString($request->numero);
-        $numero_descriptografado = substr_replace($numero_descriptografado, ' **** **** ', 4, -4);
-        $validade_descriptografada = Crypt::decryptString($request->validade);
-        $request->numero = $numero_descriptografado;
-        $request->validade = $validade_descriptografada;
-
-        return;
-    }
-
-    public function criptografrar($request){
-        $numero = Crypt::encryptString($request->numero);
-        $validade = Crypt::encryptString($request->validade);
-
-        $request->merge(['numero' => $numero, 'validade' => $validade]);
-        return $request;
-    }
 }
