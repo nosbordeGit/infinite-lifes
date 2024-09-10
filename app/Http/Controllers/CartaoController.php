@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Encryption\DecryptException;
 use App\Models\Cartao;
+use App\Services\criptografiaService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -20,10 +21,11 @@ class CartaoController extends Controller
     {
         $cliente = Auth::user()->cliente;
         $cartoes = Cartao::where('status', 1)->where('cliente_id', $cliente->id)->get();
+        $criptografiaService = new criptografiaService();
 
         if($cartoes->isNotEmpty()){
             foreach ($cartoes as $cartao){
-                $this->descriptografar($cartao);
+                $criptografiaService->descriptografarCartao($cartao);
             }
         }
         return view('cliente.cartao.cartoes', compact('cartoes'));
@@ -45,7 +47,8 @@ class CartaoController extends Controller
         ]);
 
         $cartao = Cartao::find($id);
-        $entradas = $this->criptografrar($request);
+        $criptografiaService = new criptografiaService();
+        $entradas = $criptografiaService->criptografarCartao($request);
         $entradas = $entradas->except('_token', '_method');
         foreach ($entradas as $chave => $valor) {
             $cartao->$chave = $valor;
@@ -76,7 +79,8 @@ class CartaoController extends Controller
         ]);
 
         $cliente = Auth::user()->cliente;
-        $request = $this->criptografrar($request);
+        $criptografiaService = new criptografiaService();
+        $request = $criptografiaService->criptografarCartao($request);
         $cartao = $cliente->cartoes()->create([
             'numero' => $request->numero,
             'validade' => $request->validade,
