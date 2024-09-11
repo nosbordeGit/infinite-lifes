@@ -25,20 +25,23 @@ class FeedbackResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('titulo')
+                    ->label(__('Title'))
                     ->required()
-                    ->maxLength(50),
+                    ->maxLength(50)
+                    ->translateLabel(),
                 Forms\Components\Textarea::make('corpo')
+                    ->label(__('Body'))
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\Select::make('status')
                     ->options([
-                        'Aberto' => 'Aberto',
-                        'Finalizado' => 'Finalizado'
+                        'Aberto' => __('Opened'),
+                        'Finalizado' => __('Finished')
                     ])
                     ->required()
                     ->default('Aberto'),
                 Select::make('user_id')
-                    ->label('ID do usuário')
+                    ->label(__('ID user'))
                     ->relationship(name: 'usuario', titleAttribute: 'id')
                     ->required()
             ]);
@@ -49,13 +52,17 @@ class FeedbackResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('titulo')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('usuario.email')
                     ->label('e-mail')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('usuario.telefone')
-                    ->label('telefone'),
+                    ->translateLabel()
+                    ->label('phone number'),
                 Tables\Columns\TextColumn::make('user_id')
+                    ->label('ID user')
+                    ->translateLabel()
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
