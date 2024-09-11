@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('administrador', function (Blueprint $table) {
             $table->id();
+            $table->string('nome', 100);
             $table->string('tipo', 90);
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();

@@ -13,6 +13,7 @@ class Administrador extends Model
 
     protected $table = 'administrador';
     protected $fillable = [
+        'nome',
         'tipo',
         'user_id'
     ];
@@ -23,6 +24,7 @@ class Administrador extends Model
 
     protected function casts(): array {
         return [
+            'nome' => 'string',
             'tipo' => 'string'
         ];
     }

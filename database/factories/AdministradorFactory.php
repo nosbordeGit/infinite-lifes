@@ -18,6 +18,7 @@ class AdministradorFactory extends Factory
     public function definition(): array
     {
         return [
+            'nome' => $this->faker->name(null),
             'tipo' => $this->faker->word(),
             'user_id' => User::pluck('id')->random()
         ];
