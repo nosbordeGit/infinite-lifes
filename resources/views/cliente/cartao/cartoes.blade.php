@@ -27,10 +27,6 @@
                                 <h5 class="card-title">{{ $cartao->numero }}</h5>
                             </x-slot>
 
-                            <x-slot name="cvc">
-                                <p class="card-text"><strong>{{ __('CVC') }}: </strong>{{ $cartao->cvc }}</p>
-                            </x-slot>
-
                             <x-slot name="validade">
                                 <p class="card-text"><strong>{{ __('Validate') }}: </strong>{{ $cartao->validade }}</p>
                             </x-slot>
@@ -72,12 +68,6 @@
                             <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text" name="numero"
                                 value="{{ $cartao->numero }}" required autocomplete="numero" />
                             <x-input-error :messages="$errors->get('numero')" class="mt-2" />
-                        </x-slot>
-
-                        <x-slot name="cvc">
-                            <x-text-input id="cvc" class="block mt-1 w-full mt-2" type="text" name="cvc"
-                                value="{{ $cartao->cvc }}" required autocomplete="cvc" />
-                            <x-input-error :messages="$errors->get('cvc')" class="mt-2" />
                         </x-slot>
 
                         <x-slot name="validade">

@@ -9,15 +9,8 @@
                 {{ $numero }}
             </div>
 
-            <div class="container">
-                <div class="row ml-4">
-                    <div class="col-5">
-                        {{ $cvc }}
-                    </div>
-                    <div class="col-7">
-                        {{ $validade }}
-                    </div>
-                </div>
+            <div class="d-flex justify-content-center">
+                {{ $validade }}
             </div>
         </div>
     </div>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
+use App\Models\Cartao;
 use App\Models\Favorito;
 use App\Models\Livro;
 use App\Models\Pedido;
 use App\Models\User;
+use App\Services\criptografiaService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,9 +39,13 @@ class PedidoController extends Controller
     public function create(Request $request)
     {
         $cliente = Auth::user()->cliente;
+        $cartoes = Cartao::where('status', 1)->where('cliente_id', $cliente->id)->get();
+        foreach ($cartoes as $cartao) {
+            $criptografiaService = new criptografiaService();
+            $criptografiaService->descriptografarCartao($cartao);
+        }
         if ($request->input('tipo_id') == 'carrinho') {
             $carrinho = Carrinho::find($request->id);
-            return view('cliente.pedido.formulario', compact('carrinho'));
         } else {
             $carrinho = $cliente->carrinhos()->create();
             if ($request->input('tipo_id') == 'livro') {
@@ -51,7 +57,7 @@ class PedidoController extends Controller
                     $carrinho->livros()->attach($favorito->livro_id);
             }
             //dd($carrinho, $carrinho->livros, $favoritos);
-            return view('cliente.pedido.formulario', compact('carrinho'));
+            return view('cliente.pedido.formulario', compact(['carrinho', 'cartoes']));
         }
 
         return redirect()->back();
@@ -120,7 +126,7 @@ class PedidoController extends Controller
         if (Auth::user()->cliente) {
             $pedido = Auth::user()->cliente->pedidos()->firstWhere('id', $id);
             return view('cliente.pedido.pedido', compact('pedido'));
-        }elseif(Auth::user()->transportadora){
+        } elseif (Auth::user()->transportadora) {
             $pedido = Auth::user()->transportadora->pedidos()->firstWhere('id', $id);
             return view('transportadora.pedido.pedido', compact('pedido'));
         }
@@ -131,7 +137,7 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editar(Request $request ,string $id)
+    public function editar(Request $request, string $id)
     {
         $pedido = Pedido::find($id);
         $pedido->status = $request->status;

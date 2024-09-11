@@ -81,43 +81,50 @@
                             <div class="col-md-4">
                                 <x-input-label for="estado" :value="__('endereco.State')" />
                                 <x-text-input id="estado" class="block mt-1 w-full" type="text" name="estado"
-                                    value="{{ $carrinho->cliente->usuario?->endereco?->estado }}" autocomplete="estado" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->estado }}"
+                                    autocomplete="estado" />
                                 <x-input-error :messages="$errors->get('estado')" class="mt-2" />
                             </div>
 
                             <div class="col-md-5">
                                 <x-input-label for="cidade" :value="__('endereco.City')" />
                                 <x-text-input id="cidade" class="block mt-1 w-full" type="text" name="cidade"
-                                    value="{{ $carrinho->cliente->usuario?->endereco?->estado }}" autocomplete="cidade" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->estado }}"
+                                    autocomplete="cidade" />
                                 <x-input-error :messages="$errors->get('cidade')" class="mt-2" />
                             </div>
 
                             <div class="col-md-7">
                                 <x-input-label for="bairro" :value="__('endereco.Neighborhood')" />
                                 <x-text-input id="bairro" class="block mt-1 w-full" type="text" name="bairro"
-                                    value="{{ $carrinho->cliente->usuario?->endereco?->bairro }}" autocomplete="bairro" />
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->bairro }}"
+                                    autocomplete="bairro" />
                                 <x-input-error :messages="$errors->get('bairro')" class="mt-2" />
                             </div>
 
                             <div class="col-md-12">
                                 <x-input-label for="endereco" :value="__('endereco.Address')" />
-                                <x-text-input id="endereco" class="block mt-1 w-full" type="text" name="endereco"
-                                    value="{{ $carrinho->cliente->usuario?->endereco?->endereco }}" autocomplete="endereco" />
+                                <x-text-input id="endereco" class="block mt-1 w-full" type="text"
+                                    name="endereco" value="{{ $carrinho->cliente->usuario?->endereco?->endereco }}"
+                                    autocomplete="endereco" />
                                 <x-input-error :messages="$errors->get('endereco')" class="mt-2" />
                             </div>
 
                             <div class="col-md-12">
                                 <x-input-label for="complemento" :value="__('Complement')" />
-                                <x-text-input id="complemento" class="block mt-1 w-full" type="text" name="complemento"
-                                    value="{{ $carrinho->cliente->usuario?->endereco?->complemento }}" autocomplete="complemento" />
+                                <x-text-input id="complemento" class="block mt-1 w-full" type="text"
+                                    name="complemento"
+                                    value="{{ $carrinho->cliente->usuario?->endereco?->complemento }}"
+                                    autocomplete="complemento" />
                                 <x-input-error :messages="$errors->get('complemento')" class="mt-2" />
                             </div>
 
                             <div class="col-md-6">
                                 <x-input-label for="cartao" class="form-label" :value="__('Card')" />
                                 <x-select class="form-select" id="cartao" name="cartao">
-                                    @foreach ($carrinho->cliente->cartoes as $cartao)
-                                        <option value="{{ $cartao->id }}">{{ __('Number') }}: {{ $cartao->numero }}</option>
+                                    @foreach ($cartoes as $cartao)
+                                        <option value="{{ $cartao->id }}">{{ __('Number') }}:
+                                            {{ $cartao->numero }}</option>
                                     @endforeach
                                 </x-select>
                                 <x-input-error :messages="$errors->get('cartao')" class="mt-2" />
@@ -125,9 +132,11 @@
 
                             <hr class="my-4">
 
-                            <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="carrinho_id" value="{{ $carrinho->id }}" />
-                            <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="valor" value="{{ $carrinho->livros->sum('valor') }}" />
-                           <x-primary-button>{{ __('Order') }}</x-primary-button>
+                            <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="carrinho_id"
+                                value="{{ $carrinho->id }}" />
+                            <x-text-input id="tipo_id" class="block mt-1 w-full" type="hidden" name="valor"
+                                value="{{ $carrinho->livros->sum('valor') }}" />
+                            <x-primary-button>{{ __('Order') }}</x-primary-button>
                         </div>
                     </form>
                 </div>
