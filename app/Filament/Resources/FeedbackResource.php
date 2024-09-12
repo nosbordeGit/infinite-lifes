@@ -55,11 +55,12 @@ class FeedbackResource extends Resource
                     ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('usuario.email')
-                    ->label('e-mail')
+                    ->label('E-Mail Address')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('usuario.telefone')
-                    ->translateLabel()
-                    ->label('phone number'),
+                    ->label('Phone Number')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('user_id')
                     ->label('ID user')
                     ->translateLabel()

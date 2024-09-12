@@ -26,7 +26,7 @@ class TransportadoraResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return __('User'); // Isso colocará o recurso dentro do grupo "User"
+        return __('User');
     }
 
     public static function form(Form $form): Form
