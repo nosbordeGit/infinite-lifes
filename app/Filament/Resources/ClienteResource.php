@@ -54,18 +54,28 @@ class ClienteResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('user_id')
+                    ->label('ID user')
+                    ->numeric()
+                    ->sortable()
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('nome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sobrenome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cpf')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('data_nascimento')
                     ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('usuario.email')
+                    ->label('E-Mail Address')
+                    ->translateLabel()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('usuario.telefone')
+                    ->label('Phone Number')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -80,6 +90,7 @@ class ClienteResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

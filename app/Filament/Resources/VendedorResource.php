@@ -49,13 +49,22 @@ class VendedorResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('user_id')
+                ->label('ID user')
+                ->numeric()
+                ->sortable()
+                ->translateLabel(),
                 Tables\Columns\TextColumn::make('empresa')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cnpj')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('usuario.email')
+                    ->label('E-Mail Address')
+                    ->translateLabel()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('usuario.telefone')
+                    ->label('Phone Number')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -70,6 +79,7 @@ class VendedorResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
