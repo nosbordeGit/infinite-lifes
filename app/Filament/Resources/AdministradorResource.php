@@ -34,14 +34,39 @@ class AdministradorResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nome')
+                    ->label(__('Name'))
                     ->required()
                     ->maxLength(100),
                 Forms\Components\TextInput::make('tipo')
+                    ->label(__('Type'))
                     ->required()
                     ->maxLength(90),
-                Forms\Components\TextInput::make('user_id')
+                Forms\Components\TextInput::make('email')
+                    ->label(__('E-Mail Address'))
                     ->required()
-                    ->numeric(),
+                    ->maxLength(90),
+                Forms\Components\TextInput::make('telefone')
+                    ->label(__('Phone Number'))
+                    ->required()
+                    ->maxLength(16),
+                Forms\Components\TextInput::make('password')
+                    ->label(__('Password'))
+                    ->password()
+                    ->required()
+                    ->maxLength(255)
+                    ->confirmed()
+                    ->hiddenOn('edit'),
+                Forms\Components\TextInput::make('password')
+                    ->label(__('Confirm Password'))
+                    ->password()
+                    ->required()
+                    ->maxLength(255)
+                    ->hiddenOn('edit'),
+                Forms\Components\TextInput::make('user_id')
+                    ->label(__('ID user'))
+                    ->required()
+                    ->numeric()
+                    ->visibleOn('edit'),
             ]);
     }
 
@@ -50,10 +75,10 @@ class AdministradorResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user_id')
-                ->label('ID user')
-                ->numeric()
-                ->sortable()
-                ->translateLabel(),
+                    ->label('ID user')
+                    ->numeric()
+                    ->sortable()
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('nome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tipo')
