@@ -20,11 +20,15 @@ class CreateAdministrador extends CreateRecord
         $request = Request::create('/route', 'POST', $data);
 
         $registroUsuarioService = new registroUsuarioService();
-
         $usuario = $registroUsuarioService->storeUsuario($request);
-        $administrador = $registroUsuarioService->storeAdministrador($request, $usuario);
 
-        return [];
+        unset($data['telefone']);
+        unset($data['email']);
+        unset($data['password']);
+        $data['user_id'] = $usuario->id;
+        //$administrador = $registroUsuarioService->storeAdministrador($request, $usuario);
+
+        return $data;
     }
 
     protected function getRedirectUrl(): string

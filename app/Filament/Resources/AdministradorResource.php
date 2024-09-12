@@ -35,20 +35,29 @@ class AdministradorResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nome')
                     ->label(__('Name'))
+                    ->string()
                     ->required()
+                    ->placeholder('Gabriel Lucas Silva')
                     ->maxLength(100),
                 Forms\Components\TextInput::make('tipo')
                     ->label(__('Type'))
+                    ->string()
                     ->required()
                     ->maxLength(90),
                 Forms\Components\TextInput::make('email')
                     ->label(__('E-Mail Address'))
+                    ->email()
+                    ->unique()
                     ->required()
-                    ->maxLength(90),
+                    ->maxLength(255)
+                    ->placeholder('email@gmail.com'),
                 Forms\Components\TextInput::make('telefone')
                     ->label(__('Phone Number'))
                     ->required()
-                    ->maxLength(16),
+                    ->maxLength(17)
+                    ->placeholder('Formato: 11 11 11111 1111')
+                    ->tel()
+                    ->telRegex('/^[0-9]{2} [0-9]{2} [0-9]{5}-[0-9]{4}$/'),
                 Forms\Components\TextInput::make('password')
                     ->label(__('Password'))
                     ->password()
@@ -62,11 +71,6 @@ class AdministradorResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->hiddenOn('edit'),
-                Forms\Components\TextInput::make('user_id')
-                    ->label(__('ID user'))
-                    ->required()
-                    ->numeric()
-                    ->visibleOn('edit'),
             ]);
     }
 
