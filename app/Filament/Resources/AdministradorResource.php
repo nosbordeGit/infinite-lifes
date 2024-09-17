@@ -36,7 +36,7 @@ class AdministradorResource extends Resource
                 Forms\Components\TextInput::make('nome')
                     ->label(__('Name'))
                     ->string()
-                    ->required()
+                    ->required(fn($get) => $get('tipo') == 'create')
                     ->placeholder('Gabriel Lucas Silva')
                     ->maxLength(100),
                 Forms\Components\TextInput::make('tipo')
@@ -53,7 +53,7 @@ class AdministradorResource extends Resource
                     ->placeholder('email@gmail.com'),
                 Forms\Components\TextInput::make('telefone')
                     ->label(__('Phone Number'))
-                    ->required()
+                    ->required(fn($get) => $get('tipo') == 'create')
                     ->maxLength(17)
                     ->placeholder('Formato: 11 11 11111 1111')
                     ->tel()
@@ -95,11 +95,15 @@ class AdministradorResource extends Resource
                     ->label('Phone Number')
                     ->translateLabel(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Created_at')
+                    ->translateLabel()
+                    ->dateTime('d/m/Y H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Updated_at')
+                    ->translateLabel()
+                    ->dateTime('d/m/Y H:i:s')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

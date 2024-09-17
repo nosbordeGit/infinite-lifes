@@ -1,4 +1,8 @@
 {
+    "Created_at": "Criado em",
+    "created_at": "criado em",
+    "Updated_at": "Atualizado em",
+    "updated_at": "atualizado em",
     "About": "Sobre",
     "About of Vendor": "Sobre o Vendedor",
     "Address of Vendor": "Endereço do Vendedor",
