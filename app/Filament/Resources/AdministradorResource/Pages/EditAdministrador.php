@@ -23,16 +23,21 @@ class EditAdministrador extends EditRecord
         $data['telefone'] = $usuario->telefone;
 
         return $data;
+
     }
 
-    protected function beforeValidate(array $data): void
+
+    protected function beforeValidate(): void
     {
-        dd($data);
+        $exemplo = $this->form->getState();
+        dd($exemplo);
         $dataAll = collect(FacadesRequest::only('components'));
         $components = $dataAll->get('components');
+        dd($dataAll, $components);
         $snapshot = collect($components[0])->get('snapshot');
         $snapshot = json_decode($snapshot, true);
         $collect = $snapshot['data']['data'];
+        dd($snapshot,$collect);
         $collect = collect($collect[0]);
         $emailTelefone = $collect->only(['telefone', 'email']);
         $idAdmin = $collect->only('id');
@@ -40,7 +45,7 @@ class EditAdministrador extends EditRecord
             'email' => 'required', 'string', 'lowercase', 'email', 'max:255',
             'telefone' => 'required', 'string', 'max:17', 'regex:/^[0-9]{2} [0-9]{2} [0-9]{5}-[0-9]{4}$/'
         ];
-
+//dd('regra', $regras);
         $validacao = Validator::make($emailTelefone->toArray(), $regras);
         if($validacao->fails()){
             $this->redirect($this->getResource()::getUrl('edit', ['record' => $this->record->id]));
@@ -51,12 +56,6 @@ class EditAdministrador extends EditRecord
         }
     }
 
-    protected function mutateFormDataBeforeSave(array $data): array
-    {
-        dd('chegou',$data);
-
-        return $data;
-    }
 
     protected function getHeaderActions(): array
     {
