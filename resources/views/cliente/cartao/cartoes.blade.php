@@ -37,6 +37,55 @@
                                 data-bs-target="#baseModal{{ $cartao->id }}">{{ __('Informations') }}</x-primary-button>
                         </div>
                     </div>
+
+                    <!-- Modal Contendo Informações do Cartão -->
+                    @if ($cartoes->isNotEmpty())
+                        <x-modal.baseScroll :id="$cartao->id">
+                            <x-slot name="titulo">
+                                <x-h1>{{ __('Card') }}</x-h1>
+                            </x-slot>
+
+                            <x-slot name="corpo">
+                                <form action="{{ route('cartao.atualizar', $cartao->id) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <x-cliente.cartao.base>
+                                        <x-slot name="tipo">
+                                            <x-select class="form-select" id="tipo" name="tipo">
+                                                <option value="credito">Crédito</option>
+                                                <option value="debito">Debito</option>
+                                            </x-select>
+                                            <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
+                                        </x-slot>
+
+                                        <x-slot name="numero">
+                                            <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text"
+                                                name="numero" value="{{ $cartao->numero }}" required
+                                                autocomplete="numero" />
+                                            <x-input-error :messages="$errors->get('numero')" class="mt-2" />
+                                        </x-slot>
+
+                                        <x-slot name="validade">
+                                            <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date"
+                                                name="validade" value="{{ $cartao->validade }}" required
+                                                autocomplete="validade" />
+                                            <x-input-error :messages="$errors->get('validade')" class="mt-2" />
+                                        </x-slot>
+                                    </x-cliente.cartao.base>
+
+                                    <x-slot name="footer">
+                                        <x-primary-button>{{ __('Alter') }}</x-primary-button>
+                                </form>
+
+                                <form action="{{ route('cartao.deletar', $cartao->id) }}" method="POST">
+                                    @csrf
+                                    <x-danger-button>{{ __('Delete') }}</x-danger-button>
+                                </form>
+                            </x-slot>
+                            </x-slot>
+                        </x-modal.baseScroll>
+                    @endif
+
                 @endforeach
             </div>
         </div>
@@ -44,50 +93,5 @@
         <x-h1 class="mt-5">{{ __('No registered cards found') }}</x-h1>
     @endif
 
-    <!-- Modal -->
-    @if ($cartoes->isNotEmpty())
-        <x-modal.baseScroll :modal-id="$cartao->id">
-            <x-slot name="titulo">
-                <x-h1>{{ __('Card') }}</x-h1>
-            </x-slot>
-
-            <x-slot name="corpo">
-                <form action="{{ route('cartao.atualizar', $cartao->id) }}" method="post">
-                    @csrf
-                    @method('put')
-                    <x-cliente.cartao.base>
-                        <x-slot name="tipo">
-                            <x-select class="form-select" id="tipo" name="tipo">
-                                <option value="credito">Crédito</option>
-                                <option value="debito">Debito</option>
-                            </x-select>
-                            <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
-                        </x-slot>
-
-                        <x-slot name="numero">
-                            <x-text-input id="numero" class="block mt-1 w-full mt-2" type="text" name="numero"
-                                value="{{ $cartao->numero }}" required autocomplete="numero" />
-                            <x-input-error :messages="$errors->get('numero')" class="mt-2" />
-                        </x-slot>
-
-                        <x-slot name="validade">
-                            <x-text-input id="validade" class="block mt-1 w-full mt-2" type="date" name="validade"
-                                value="{{ $cartao->validade }}" required autocomplete="validade" />
-                            <x-input-error :messages="$errors->get('validade')" class="mt-2" />
-                        </x-slot>
-                    </x-cliente.cartao.base>
-
-                    <x-primary-button>{{ __('Alter') }}</x-primary-button>
-                </form>
-
-                <x-slot name="footer">
-                    <form action="{{ route('cartao.deletar', $cartao->id) }}" method="POST">
-                        @csrf
-                        <x-danger-button>{{ __('Delete') }}</x-danger-button>
-                    </form>
-                </x-slot>
-            </x-slot>
-        </x-modal.baseScroll>
-    @endif
 
 </x-app-layout>

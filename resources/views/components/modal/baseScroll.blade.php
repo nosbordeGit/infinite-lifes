@@ -1,11 +1,10 @@
-@props(['modalId'])
-
-<div class="modal fade" id="baseModal{{ $modalId }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="baseModall{{ $modalId }}Label" aria-hidden="true">
+@props(['id'])
+<div class="modal fade" id="baseModal{{ $id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="baseModall{{ $id }}Label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="baseModall{{ $modalId }}Label">{{ $titulo }}</h1>
+                <h1 class="modal-title fs-5" id="baseModall{{ $id }}Label">{{ $titulo }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
