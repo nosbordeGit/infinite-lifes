@@ -81,6 +81,7 @@ Route::controller(FavoritoController::class)->group(function(){
 Route::controller(FeedbackController::class)->group(function(){
     Route::get('/feedbacks', 'index')->name('feedback.index');
     Route::post('/feedback-adicionar', 'store')->name('feedback.store');
+    Route::delete('/feedback/delete/{id}', 'destroy')->name('feedback.destroy');
 });
 
 //Rotas do Vendedor

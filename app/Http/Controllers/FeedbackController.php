@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,6 +31,12 @@ class FeedbackController extends Controller
             'titulo' => $request->titulo,
             'corpo' => $request->corpo
         ]);
+        return redirect(route('feedback.index'));
+    }
+
+    public function destroy($id){
+        $feedback = Feedback::find($id);
+        $feedback->delete();
         return redirect(route('feedback.index'));
     }
 }
