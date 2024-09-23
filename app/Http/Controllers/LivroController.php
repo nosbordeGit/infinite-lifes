@@ -32,7 +32,52 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'titulo' => ['required', 'string', 'max:100'],
+            'resumo' => ['required', 'string', 'max:200'],
+            'quantidade_paginas' => ['required', 'integer', 'min:1'],
+            'autor' => ['required', 'string', 'max:100'],
+            'estoque' => ['required', 'integer', 'min:1'],
+            'valor' => ['required', 'numeric', 'min:1'],
+            'imagem' => ['required', 'image', 'mimes:jpeg,jpg,png'],
+            'isbn13' => ['required', 'string', 'regex:/^(97)[8-9]-[0-9]{2}-[0-9]{6}-[0-9]-[0-9]$/'],
+            'idioma'=>['required', 'string', 'max:100'],
+            'edicao'=> ['required', 'integer', 'min:1'],
+            'editora' => ['required', 'string', 'max:80'],
+            'dimensao' => ['required', 'string',  'max:10', 'regex:/^[1-2][0-6](0|5)\sx\s[1-3][0-8](0)$/'],
+            'idade'=> ['required', 'integer', 'min:5'],
+            "data_publicacao" => ['required', 'date']
+        ]);
+
+        // Obtenha a instância da imagem
+        $imagem = $request->file('imagem');
+
+        // Gere um nome único para a imagem
+        $nomeImagem = time() . '.' . $imagem->getClientOriginalExtension();
+
+        // Mova a imagem para a pasta public/assets/imagem
+        $imagem->move(public_path('assets/livro/imagem'), $nomeImagem);
+
+        $vendedor = Auth::user()->vendedor;
+        $livro = $vendedor->livros()->create([
+            'titulo' => $request->titulo,
+            'resumo' => $request->resumo,
+            'quantidade_paginas' => $request->quantidade_paginas,
+            'autor' => $request->autor,
+            'estoque' => $request->estoque,
+            'valor' => $request->valor,
+            'isbn13' => $request->isbn13,
+            'idioma'=> $request->idioma,
+            'edicao'=> $request->edicao,
+            'editora' => $request->editora,
+            'dimensao' => $request->dimensao,
+            'idade'=> $request->idade,
+            "data_publicacao" => $request->data_publicacao,
+            "imagem" => $nomeImagem,
+            "genero_id" => $request->genero_id
+        ]);
+
+        return redirect(route('livro.livro', $livro->id));
     }
 
     /**
