@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(ComentarioController::class)->group(function(){
     Route::post('/comentario', 'store')->name('comentario.store');
     Route::put('/comentario/atualizar/{id}', 'atualizar')->name('comentario.atualizar');
-    Route::post('/comentario-deletar/{id}', 'deletar')->name('comentario.deletar');
+    Route::delete('/comentario-deletar/{id}', 'deletar')->name('comentario.deletar');
 });
 
 //Rotas de CartaoController

@@ -17,27 +17,29 @@
 
                                 <!-- Modal Atualizar Comments -->
                                 <x-modal.baseScroll :id="$comentario->id">
-                                    <form action="{{ route('comentario.atualizar', $comentario->id) }}" method="POST">
-                                        @method('PUT')
-                                        @csrf
-                                        <x-slot name="titulo">{{ __('Update Comment') }}</x-slot>
-                                        <x-slot name="corpo">
+                                    <x-slot name="titulo">{{ __('Update Comment') }}</x-slot>
+                                    <x-slot name="corpo">
+                                        <form action="{{ route('comentario.atualizar', $comentario->id) }}"
+                                            method="post">
+                                            @method('PUT')
+                                            @csrf
                                             <div>
                                                 <x-text-input id="corpo" class="block mt-1 w-full form-control"
                                                     type="text" name="corpo" value="{{ $comentario->corpo }}"
                                                     required />
                                                 <x-input-error :messages="$errors->get('corpo')" class="mt-2" />
                                             </div>
-                                        </x-slot>
-                                        <x-slot name="footer">
-                                            <x-primary-button>{{ __('Alter') }}</x-primary-button>
-                                        </x-slot>
-                                    </form>
+                                    </x-slot>
+                                    <x-slot name="footer">
+                                        <x-primary-button>{{ __('Alter') }}</x-primary-button>
+                                        </form>
+                                    </x-slot>
                                 </x-modal.baseScroll>
                             </div>
 
                             <div class="col-4">
                                 <form action="{{ route('comentario.deletar', $comentario->id) }}" method="post">
+                                    @method('DELETE')
                                     @csrf
                                     <x-danger-button>{{ __('Delete') }}</x-danger-button>
                                 </form>
