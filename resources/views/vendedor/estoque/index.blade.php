@@ -5,6 +5,12 @@
         </h2>
     </x-slot>
 
+    <form action="{{ route('livro.formulario') }}" method="get">
+        <x-primary-button class="ms-3">
+            {{ __('Add') }}
+        </x-primary-button>
+    </form>
+
     <div class="container">
         @if ($livros->isNotEmpty())
             <div class="container">
