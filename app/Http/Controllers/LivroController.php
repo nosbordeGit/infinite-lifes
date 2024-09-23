@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LivroController extends Controller
 {
@@ -11,7 +12,9 @@ class LivroController extends Controller
      */
     public function index()
     {
-        //
+        $vendedor = Auth::user()->vendedor;
+        $livros = $vendedor->livros()->get();
+        return view('vendedor.estoque.index' ,compact('livros'));
     }
 
     /**
