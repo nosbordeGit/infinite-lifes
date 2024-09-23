@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Services\criptografiaService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,13 @@ class ClienteFactory extends Factory
      */
     public function definition(): array
     {
+        $criptografiaService = new criptografiaService();
+        $cpf = $this->faker->numerify('###.###.###-##');
+        $cpf = $criptografiaService->criptografarCpf($cpf);
         return [
             'nome' => $this->faker->firstName(null),
             'sobrenome' => $this->faker->lastName(null),
-            'cpf' => $this->faker->numerify('###.###.###-##'),
+            'cpf' => $cpf,
             'data_nascimento' => $this->faker->date(),
             'user_id' => User::pluck('id')->random()
         ];

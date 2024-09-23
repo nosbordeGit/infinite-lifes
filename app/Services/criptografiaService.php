@@ -25,4 +25,32 @@ class criptografiaService
 
         return;
     }
+
+    public function criptografarCpf($request)  {
+        $cpf = Crypt::encryptString($request->cpf);
+        $request->merge(['cpf' => $cpf]);
+        return $request;
+    }
+
+    public function descriptografarCpf($request)  {
+        $cpf_descriptografado = Crypt::decryptString($request->cpf);
+        $cpf_descriptografado = substr_replace($cpf_descriptografado, ' ***.***.', 6, -6);
+        $request->cpf = $cpf_descriptografado;
+
+        return;
+    }
+
+    public function criptografarCnpj($request)  {
+        $cnpj = Crypt::encryptString($request->cnpj);
+        $request->merge(['cnpj' => $cnpj]);
+        return $request;
+    }
+
+    public function descriptografarCnpj($request)  {
+        $cnpj_descriptografado = Crypt::decryptString($request->cnpj);
+        $cnpj_descriptografado = substr_replace($cnpj_descriptografado, ' **.***.***', 8, -8);
+        $request->cpf = $cnpj_descriptografado;
+
+        return;
+    }
 }

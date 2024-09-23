@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Services\criptografiaService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,13 @@ class VendedorFactory extends Factory
      */
     public function definition(): array
     {
+        $criptografiaService = new criptografiaService();
+        $cnpj =  $this->faker->numerify('##.###.###/####-##');
+        $cnpj = $criptografiaService->criptografarCnpj($cnpj);
         return [
             'empresa' => $this->faker->company(),
             'user_id' => User::pluck('id')->random(),
-            'cnpj' => $this->faker->numerify('##.###.###/####-##'),
+            'cnpj' => $cnpj,
         ];
     }
 }
