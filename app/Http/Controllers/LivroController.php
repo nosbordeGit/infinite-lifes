@@ -65,6 +65,10 @@ class LivroController extends Controller
      */
     public function deletar(string $id)
     {
-        //
+        $livro = Livro::Find($id);
+        $livro->status = 0;
+        $livro->save();
+
+        return redirect(route('estoque.index'));
     }
 }

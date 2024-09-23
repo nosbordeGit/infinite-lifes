@@ -94,7 +94,7 @@ Route::controller(LivroController::class)->group(function(){
     Route::post('/livro/formulario', 'store')->name('livro.store');
     Route::get('/livro/{titulo?}-{id}', 'livro')->name('livro.livro');
     Route::put('/livro/atualizar/{id}', 'atualizar')->name('livro.atualizar');
-    Route::delete('/livro/deletar/{id}', 'formulario')->name('livro.deletar');
+    Route::delete('/livro/deletar/{id}', 'deletar')->name('livro.deletar');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
