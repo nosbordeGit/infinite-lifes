@@ -24,7 +24,7 @@ class LivroController extends Controller
      */
     public function formulario()
     {
-        //
+        return view('vendedor.estoque.formulario');
     }
 
     /**
