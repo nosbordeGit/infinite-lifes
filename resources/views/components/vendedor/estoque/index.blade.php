@@ -12,14 +12,15 @@
         <div class="card-body text-center">
             <x-h1 class="card-title">{{ $titulo }}</x-h1>
             <p class="card-text">{{ __('Stock') }}: {{ $estoque }}</p>
+            <small class="text-body-secondary">
+                {{ $atualizacao }}
+            </small>
             <div class="d-flex justify-content-center align-items-center">
                 <div class="btn-group">
-                    <form action="{{ route('site.livro', ['titulo' => $titulo ?? null, 'id' => $id]) }}" method="get">
+                    <form action="{{ route('livro.livro', ['titulo' => $titulo ?? null, 'id' => $id]) }}" method="get">
                         <x-primary-button>{{ __('Informations') }}</x-primary-button>
                     </form>
                 </div>
-                <small class="text-body-secondary ml-2">
-                </small>
             </div>
         </div>
     </div>

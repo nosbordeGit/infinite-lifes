@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Livro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class LivroController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : View
     {
         $vendedor = Auth::user()->vendedor;
         $livros = $vendedor->livros()->get();
@@ -20,7 +22,7 @@ class LivroController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function formulario()
     {
         //
     }
@@ -36,9 +38,10 @@ class LivroController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function livro(string $titulo = null, string $id) : View
     {
-        //
+        $livro = Livro::find($id);
+        return view('vendedor.estoque.livro', compact('livro'));
     }
 
     /**
@@ -52,7 +55,7 @@ class LivroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function atualizar(Request $request, string $id)
     {
         //
     }
@@ -60,7 +63,7 @@ class LivroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deletar(string $id)
     {
         //
     }

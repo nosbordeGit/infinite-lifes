@@ -15,6 +15,7 @@
                                 <x-slot name="imagem">{{ $livro->imagem }}</x-slot>
                                 <x-slot name="titulo">{{ $livro->titulo }}</x-slot>
                                 <x-slot name="estoque">{{ $livro->estoque }}</x-slot>
+                                <x-slot name="atualizacao">{{ $livro->updated_at }}</x-slot>
                             </x-vendedor.estoque.index>
                         </div>
                     @endforeach
