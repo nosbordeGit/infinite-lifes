@@ -6,6 +6,7 @@ use App\Http\Controllers\CartaoController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\LivroController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
@@ -85,6 +86,16 @@ Route::controller(FeedbackController::class)->group(function(){
 });
 
 //Rotas do Vendedor
+
+//Rotas do Livro
+Route::controller(LivroController::class)->group(function(){
+    Route::get('/estoque', 'index')->name('estoque.index');
+    Route::get('/livro/formulario', 'formulario')->name('livro.formulario');
+    Route::post('/livro/formulario', 'store')->name('livro.store');
+    Route::get('/livro/{titulo?}-{id}', 'livro')->name('livro.livro');
+    Route::put('/livro/atualizar/{id}', 'atualizar')->name('livro.atualizar');
+    Route::delete('/livro/deletar/{id}', 'formulario')->name('livro.deletar');
+});
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
 ->name('sair');

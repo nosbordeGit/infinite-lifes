@@ -24,7 +24,7 @@
                         @else
                         <x-dropdown-link class="dropdown-item" :href="route('profile.edit')">{{ __('Profile') }}</x-dropdown-link>
                             @if (Auth::user()->vendedor)
-                                <x-dropdown-link class="dropdown-item" href="#">{{ __('Stock') }}</x-dropdown-link>
+                                <x-dropdown-link class="dropdown-item" href="{{ route('estoque.index') }}">{{ __('Stock') }}</x-dropdown-link>
                                 <x-dropdown-link class="dropdown-item" href="#">{{ __('Sales') }}</x-dropdown-link>
                             @elseif (Auth::user()->cliente)
                                 <x-dropdown-link class="dropdown-item" href="{{ route('carrinho.index') }}">{{ __('Carts') }}</x-dropdown-link>
