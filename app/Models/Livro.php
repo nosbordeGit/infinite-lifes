@@ -24,16 +24,17 @@ class Livro extends Model
         'idioma',
         'edicao',
         'editora',
-        'dimensao',
         'idade',
         'data_publicacao',
         'imagem',
         'genero_id',
+        'dimensao_id',
         'vendedor_id'
     ];
 
     protected $hidden = [
         'vendedor_id',
+        'dimensao_id',
         'genero_id'
     ];
 
@@ -65,6 +66,9 @@ class Livro extends Model
         return $this->belongsTo(Genero::class);
     }
 
+    public function dimensao() : BelongsTo {
+        return $this->belongsTo(Dimensao::class);
+    }
     public function comentarios(): HasMany
     {
         return $this->hasMany(Comentario::class);
