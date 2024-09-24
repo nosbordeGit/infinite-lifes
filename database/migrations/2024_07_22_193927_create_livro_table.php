@@ -28,6 +28,7 @@ return new class extends Migration
             $table->date('data_publicacao');
             $table->string('imagem');
             $table->foreignId('genero_id')->constrained('genero');
+            $table->foreignId('dimensao_id')->constrained('dimensao');
             $table->foreignId('vendedor_id')->constrained('vendedor');
             $table->timestamps();
         });
