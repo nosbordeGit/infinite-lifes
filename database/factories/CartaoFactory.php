@@ -21,7 +21,7 @@ class CartaoFactory extends Factory
         $numero = $this->faker->creditCardNumber(null, true, ' ');
         $numero = Crypt::encryptString($numero);
 
-        $validade = $this->faker->creditCardExpirationDate();
+        $validade = $this->faker->creditCardExpirationDateString(true, 'Y-m-d');
         $validade = Crypt::encryptString($validade);
         return [
             'numero' => $numero,
