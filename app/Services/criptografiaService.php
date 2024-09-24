@@ -26,10 +26,9 @@ class criptografiaService
         return;
     }
 
-    public function criptografarCpf($request)  {
-        $cpf = Crypt::encryptString($request->cpf);
-        $request->merge(['cpf' => $cpf]);
-        return $request;
+    public function criptografarCpf($cpf)  {
+        $cpf = Crypt::encryptString($cpf);
+        return $cpf;
     }
 
     public function descriptografarCpf($request)  {
@@ -40,10 +39,9 @@ class criptografiaService
         return;
     }
 
-    public function criptografarCnpj($request)  {
-        $cnpj = Crypt::encryptString($request->cnpj);
-        $request->merge(['cnpj' => $cnpj]);
-        return $request;
+    public function criptografarCnpj($cnpj)  {
+        $cnpj = Crypt::encryptString($cnpj);
+        return $cnpj;
     }
 
     public function descriptografarCnpj($request)  {
