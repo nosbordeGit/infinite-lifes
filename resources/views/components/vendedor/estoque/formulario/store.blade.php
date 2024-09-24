@@ -1,3 +1,5 @@
+@props(['dimensoes', 'generos'])
+
 <div class="container my-4 mx-8">
     <div class="card shadow-lg p-3 bg-body-tertiary rounded">
         <div class="card-body">
@@ -14,7 +16,7 @@
                 </div>
 
                 <div>
-                    <x-input-label for="titulo" :value="__('Summary')" />
+                    <x-input-label for="resumo" :value="__('Summary')" />
                     <x-textarea id="resumo" class="block mt-1 w-full form-control" type="text" name="resumo"
                         required />
                     <x-input-error :messages="$errors->get('resumo')" class="mt-2" />
@@ -23,21 +25,21 @@
                 <div class="my-3">
                     <x-input-label for="quantidade_paginas" :value="__('Quantity of Pages')" />
                     <x-text-input id="quantidade_paginas" class="block mt-1 w-full" type="number"
-                        name="quantidade_paginas" :value="old('quantidade_paginas')" autocomplete="quantidade_paginas" />
+                    name="quantidade_paginas" :value="old('quantidade_paginas')" autocomplete="quantidade_paginas"  min="1" />
                     <x-input-error :messages="$errors->get('quantidade_paginas')" class="mt-2" />
                 </div>
 
                 <div class="my-3">
                     <x-input-label for="valor" :value="__('Value')" />
                     <x-text-input id="valor" class="block mt-1 w-full" type="number" name="valor"
-                        :value="old('valor')" autocomplete="valor" />
+                        :value="old('valor')" autocomplete="valor" min="1"/>
                     <x-input-error :messages="$errors->get('valor')" class="mt-2" />
                 </div>
 
                 <div class="my-3">
                     <x-input-label for="estoque" :value="__('Stock')" />
                     <x-text-input id="estoque" class="block mt-1 w-full" type="number" name="estoque"
-                        :value="old('estoque')" autocomplete="estoque" />
+                        :value="old('estoque')" autocomplete="estoque" min="1" />
                     <x-input-error :messages="$errors->get('estoque')" class="mt-2" />
                 </div>
 
@@ -65,7 +67,7 @@
                 <div class="my-3">
                     <x-input-label for="edicao" :value="__('Edition')" />
                     <x-text-input id="edicao" class="block mt-1 w-full" type="number" name="edicao"
-                        :value="old('edicao')" autocomplete="edicao" />
+                        :value="old('edicao')" autocomplete="edicao" min="1" />
                     <x-input-error :messages="$errors->get('edicao')" class="mt-2" />
                 </div>
 
@@ -88,8 +90,17 @@
                 <div class="my-3">
                     <x-input-label for="idade" :value="__('Age')" />
                     <x-text-input id="idade" class="block mt-1 w-full" type="number" name="idade"
-                        :value="old('idade')" autocomplete="idade" />
+                        :value="old('idade')" autocomplete="idade" min="5" />
                     <x-input-error :messages="$errors->get('idade')" class="mt-2" />
+                </div>
+
+                <div class="my-3">
+                    <x-input-label for="genero" class="form-label" :value="__('Type')" />
+                    <x-select class="form-select" id="genero" name="genero">
+                        @foreach ($generos as $genero)
+                            <option value="{{ $genero->id }}">{{ $genero->genero }}</option>
+                        @endforeach
+                    </x-select>
                 </div>
 
                 <div class="my-3">

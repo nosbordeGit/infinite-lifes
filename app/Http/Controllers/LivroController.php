@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dimensao;
+use App\Models\Genero;
 use App\Models\Livro;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -24,9 +27,9 @@ class LivroController extends Controller
      */
     public function formulario()
     {
-        //$dimensoes = Dimensoes::all();
-        $dimensoes = null;
-        return view('vendedor.estoque.formulario', compact('dimensoes'));
+        $dimensoes = Dimensao::all();
+        $generos = Genero::all();
+        return view('vendedor.estoque.formulario', compact('dimensoes', 'generos'));
     }
 
     /**
@@ -34,6 +37,7 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
+        $dataAtual = Carbon::now();
         $request->validate([
             'titulo' => ['required', 'string', 'max:100'],
             'resumo' => ['required', 'string', 'max:200'],
@@ -47,7 +51,7 @@ class LivroController extends Controller
             'edicao'=> ['required', 'integer', 'min:1'],
             'editora' => ['required', 'string', 'max:80'],
             'idade'=> ['required', 'integer', 'min:5'],
-            "data_publicacao" => ['required', 'date']
+            "data_publicacao" => ['required', 'date', 'before_or_equal: ' . $dataAtual]
         ]);
 
         // Obtenha a instância da imagem
@@ -71,14 +75,14 @@ class LivroController extends Controller
             'idioma'=> $request->idioma,
             'edicao'=> $request->edicao,
             'editora' => $request->editora,
-            'dimensao' => $request->dimensao,
             'idade'=> $request->idade,
             "data_publicacao" => $request->data_publicacao,
             "imagem" => $nomeImagem,
-            "genero_id" => $request->genero_id
+            'dimensao_id' => $request->dimensao,
+            "genero_id" => $request->genero
         ]);
 
-        return redirect(route('livro.livro', $livro->id));
+        return redirect(route('livro.livro', [$livro->titulo ,$livro->id]));
     }
 
     /**
