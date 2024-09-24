@@ -25,7 +25,7 @@
                     {{ __('years') }}</p>
                 <p class="card-text"><strong>{{ __('Publisher') }}:</strong> {{ $livro->editora }}</p>
                 <p class="card-text"><strong>{{ __('ISBN13') }}:</strong> {{ $livro->isbn13 }}</p>
-                <p class="card-text"><strong>{{ __('Dimension') }}:</strong> {{ $livro->dimensao }}</p>
+                <p class="card-text"><strong>{{ __('Dimension') }}:</strong> {{ $livro->dimensao->valor }}</p>
                 <p class="card-text"><strong>{{ __('Date of publication') }}:</strong> {{ $livro->data_publicacao }}
                 </p>
                 <p class="card-text"><strong>{{ __('Amount') }}:</strong> {{ $livro->estoque }}</p>
