@@ -24,7 +24,9 @@ class LivroController extends Controller
      */
     public function formulario()
     {
-        return view('vendedor.estoque.formulario');
+        //$dimensoes = Dimensoes::all();
+        $dimensoes = null;
+        return view('vendedor.estoque.formulario', compact('dimensoes'));
     }
 
     /**
@@ -44,7 +46,6 @@ class LivroController extends Controller
             'idioma'=>['required', 'string', 'max:100'],
             'edicao'=> ['required', 'integer', 'min:1'],
             'editora' => ['required', 'string', 'max:80'],
-            'dimensao' => ['required', 'string',  'max:10', 'regex:/^[1-2][0-6](0|5)\sx\s[1-3][0-8](0)$/'],
             'idade'=> ['required', 'integer', 'min:5'],
             "data_publicacao" => ['required', 'date']
         ]);

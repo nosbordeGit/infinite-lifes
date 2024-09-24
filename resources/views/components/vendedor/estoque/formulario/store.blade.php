@@ -8,8 +8,8 @@
 
                 <div class="my-3">
                     <x-input-label for="titulo" :value="__('Title')" />
-                    <x-text-input id="titulo" class="block mt-1 w-full" type="text" name="titulo" :value="old('titulo')"
-                        autofocus autocomplete="titulo" />
+                    <x-text-input id="titulo" class="block mt-1 w-full" type="text" name="titulo"
+                        :value="old('titulo')" autofocus autocomplete="titulo" />
                     <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
                 </div>
 
@@ -77,10 +77,12 @@
                 </div>
 
                 <div class="my-3">
-                    <x-input-label for="dimensao" :value="__('Dimension')" />
-                    <x-text-input id="dimensao" class="block mt-1 w-full" type="text" name="dimensao"
-                        :value="old('dimensao')" autocomplete="dimensao" />
-                    <x-input-error :messages="$errors->get('dimensao')" class="mt-2" />
+                    <x-input-label for="dimensao" class="form-label" :value="__('Dimension')" />
+                    <x-select class="form-select" id="dimensao" name="dimensao">
+                        @foreach ($dimensoes as $dimensao)
+                            <option value="{{ $dimensao->id }}">{{ $dimensao->valor }}</option>
+                        @endforeach
+                    </x-select>
                 </div>
 
                 <div class="my-3">
