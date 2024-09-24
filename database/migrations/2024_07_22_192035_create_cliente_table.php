@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 50);
             $table->string('sobrenome', 50);
-            $table->string('cpf', 15);
+            $table->string('cpf', 255);
             $table->date('data_nascimento');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();

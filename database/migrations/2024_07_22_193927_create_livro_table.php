@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('idioma', 100);
             $table->integer('edicao');
             $table->string('editora', 100);
-            $table->string('dimensao', 10);
             $table->integer('idade');
             $table->date('data_publicacao');
             $table->string('imagem');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('vendedor', function (Blueprint $table) {
             $table->id();
             $table->string('empresa', 100);
-            $table->string('cnpj', 19);
+            $table->string('cnpj', 255);
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

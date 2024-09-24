@@ -50,7 +50,6 @@ class Livro extends Model
             'idioma' => 'string',
             'edicao' => 'string',
             'editora' => 'string',
-            'dimensao' => 'string',
             'idade' => 'integer',
             'data_publicacao' => 'date'
         ];
