@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             VendedorSeeder::class,
             TransportadoraSeeder::class,
             GeneroSeeder::class,
+            DimensaoSeeder::class,
             LivroSeeder::class,
             ComentarioSeeder::class,
             VisitadoSeeder::class,
