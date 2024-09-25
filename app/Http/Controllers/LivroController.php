@@ -29,7 +29,7 @@ class LivroController extends Controller
     {
         $dimensoes = Dimensao::all();
         $generos = Genero::all();
-        return view('vendedor.estoque.formulario', compact('dimensoes', 'generos'));
+        return view('vendedor.estoque.formulario.store', compact('dimensoes', 'generos'));
     }
 
     /**
@@ -99,7 +99,10 @@ class LivroController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $livro = Livro::find($id);
+        $dimensoes = Dimensao::all();
+        $generos = Genero::all();
+        return view('vendedor.estoque.formulario.store', compact('dimensoes', 'generos'));
     }
 
     /**

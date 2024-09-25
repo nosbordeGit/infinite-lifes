@@ -11,7 +11,7 @@
                 <div class="my-3">
                     <x-input-label for="titulo" :value="__('Title')" />
                     <x-text-input id="titulo" class="block mt-1 w-full" type="text" name="titulo"
-                        placeholder="{{ $livro?->titulo }}" :value="old('titulo')" autofocus autocomplete="titulo" />
+                        placeholder="{{ $livro->titulo }}" :value="old('titulo')" autofocus autocomplete="titulo" />
                     <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
                 </div>
 
