@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('livro', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('status')->default(1);
             $table->string('titulo', 90);
             $table->text('resumo');
             $table->integer('quantidade_paginas');

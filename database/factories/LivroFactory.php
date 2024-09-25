@@ -20,6 +20,7 @@ class LivroFactory extends Factory
     public function definition(): array
     {
         return [
+            'status' => $this->faker->boolean(),
             'titulo' => $this->faker->word(),
             'resumo' => $this->faker->text(40),
             'quantidade_paginas' => $this->faker->numberBetween(1, 2000),

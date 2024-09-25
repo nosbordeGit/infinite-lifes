@@ -14,6 +14,7 @@ class Livro extends Model
 
     protected $table = 'livro';
     protected $fillable = [
+        'status',
         'titulo',
         'resumo',
         'quantidade_paginas',
