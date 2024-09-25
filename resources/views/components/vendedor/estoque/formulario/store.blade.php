@@ -75,8 +75,8 @@
     </div>
 
     <div class="my-3">
-        <x-input-label for="dimensao" class="form-label" :value="__('Dimension')" />
-        <x-select class="form-select" id="dimensao" name="dimensao">
+        <x-input-label for="dimensao_id" class="form-label" :value="__('Dimension')" />
+        <x-select class="form-select" id="dimensao_id" name="dimensao_id">
             @foreach ($dimensoes as $dimensao)
                 <option value="{{ $dimensao->id }}">{{ $dimensao->valor }}</option>
             @endforeach
@@ -91,8 +91,8 @@
     </div>
 
     <div class="my-3">
-        <x-input-label for="genero" class="form-label" :value="__('Type')" />
-        <x-select class="form-select" id="genero" name="genero">
+        <x-input-label for="genero_id" class="form-label" :value="__('Type')" />
+        <x-select class="form-select" id="genero_id" name="genero_id">
             @foreach ($generos as $genero)
                 <option value="{{ $genero->id }}">{{ $genero->genero }}</option>
             @endforeach
