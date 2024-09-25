@@ -102,7 +102,7 @@ class LivroController extends Controller
         $livro = Livro::find($id);
         $dimensoes = Dimensao::all();
         $generos = Genero::all();
-        return view('vendedor.estoque.formulario.store', compact('dimensoes', 'generos', 'livro'));
+        return view('vendedor.estoque.formulario.atualizar', compact('dimensoes', 'generos', 'livro'));
     }
 
     /**
