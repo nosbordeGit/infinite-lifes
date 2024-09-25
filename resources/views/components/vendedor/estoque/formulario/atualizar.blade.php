@@ -88,7 +88,7 @@
     <div class="my-3">
         <x-input-label for="idade" :value="__('Age')" />
         <x-text-input id="idade" class="block mt-1 w-full" type="number" name="idade" :value="$livro->idade"
-            autocomplete="idade" min="5" required />
+            autocomplete="idade" min="5" max="18" required />
         <x-input-error :messages="$errors->get('idade')" class="mt-2" />
     </div>
 
@@ -110,7 +110,7 @@
     </div>
 
     <div class="my-3">
-        <x-input-label for="imagem" class="form-label" :value="__('Picture')" />
+        <x-input-label for="imagem" class="form-label" :value="__('Image')" />
         <input type="file" class="form-control" id="imagem" name="imagem" required>
         <x-input-error :messages="$errors->get('imagem')" class="mt-2" />
     </div>
