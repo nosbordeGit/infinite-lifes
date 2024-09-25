@@ -108,9 +108,9 @@ class LivroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function atualizar(Request $request, string $id)
+    public function atualizar(string $id)
     {
-        //
+        $livro = Livro::Find($id);
     }
 
     /**
