@@ -9,11 +9,8 @@
         <x-livro.livro_informacoes :livro="$livro">
             <x-slot name="botoes">
                 <div class="col-4">
-                    <form action="{{ route('livro.atualizar', $livro->id) }}" method="POST">
-                        @method('PUT')
+                    <form action="{{ route('livro.formulario_atualizar', $livro->id) }}" method="GET">
                         @csrf
-                        <x-text-input id="livro_id" class="block mt-1 w-full" type="hidden" name="livro_id"
-                            :value="$livro->id" />
                         <x-primary-button>{{ __('Alter') }}</x-primary-button>
                     </form>
                 </div>

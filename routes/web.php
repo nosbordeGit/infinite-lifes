@@ -93,6 +93,7 @@ Route::controller(LivroController::class)->group(function(){
     Route::get('/livro/formulario', 'formulario')->name('livro.formulario');
     Route::post('/livro/formulario', 'store')->name('livro.store');
     Route::get('/livro/{titulo?}-{id}', 'livro')->name('livro.livro');
+    Route::get('/livro/formulario-atualizar/{id}', 'formulario_atualizar')->name('livro.formulario_atualizar');
     Route::put('/livro/atualizar/{id}', 'atualizar')->name('livro.atualizar');
     Route::delete('/livro/deletar/{id}', 'deletar')->name('livro.deletar');
 });

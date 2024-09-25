@@ -97,19 +97,20 @@ class LivroController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function formulario_atualizar(string $id)
     {
         $livro = Livro::find($id);
         $dimensoes = Dimensao::all();
         $generos = Genero::all();
-        return view('vendedor.estoque.formulario.store', compact('dimensoes', 'generos'));
+        return view('vendedor.estoque.formulario.store', compact('dimensoes', 'generos', 'livro'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function atualizar(string $id)
+    public function atualizar(Request $request, string $id)
     {
+        dd('depois do request atualizar', $request, $id);
         $livro = Livro::Find($id);
     }
 
