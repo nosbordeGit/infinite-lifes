@@ -96,6 +96,7 @@ Route::controller(LivroController::class)->group(function(){
     Route::get('/livro/formulario-atualizar/{id}', 'formulario_atualizar')->name('livro.formulario_atualizar');
     Route::put('/livro/atualizar/{id}', 'atualizar')->name('livro.atualizar');
     Route::delete('/livro/deletar/{id}', 'deletar')->name('livro.deletar');
+    Route::get('/vendas', 'vendas')->name('vendas.index');
 });
 
 Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])

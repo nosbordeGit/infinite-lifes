@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\VendasChart;
 use App\Models\Dimensao;
 use App\Models\Genero;
 use App\Models\Livro;
@@ -153,5 +154,10 @@ class LivroController extends Controller
         $livro->save();
 
         return redirect(route('estoque.index'));
+    }
+
+    public function vendas() {
+        $vendasChart = new VendasChart();
+        return view('vendedor.vendas.index', compact('vendasChart'));
     }
 }
