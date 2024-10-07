@@ -4,10 +4,8 @@
             {{ __('Sales') }}
         </h2>
     </x-slot>
-
     <div class="container">
         {!! $vendasChart->container() !!}
-        {!! $vendasChart->script() !!}
-
     </div>
+    {!! $vendasChart->script() !!}
 </x-app-layout>
