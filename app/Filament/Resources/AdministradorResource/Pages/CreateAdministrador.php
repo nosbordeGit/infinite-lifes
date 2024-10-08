@@ -5,11 +5,8 @@ namespace App\Filament\Resources\AdministradorResource\Pages;
 use App\Filament\Resources\AdministradorResource;
 use App\Models\Administrador;
 use App\Models\User;
-use App\Services\criptografiaService;
-use App\Services\registroUsuarioService;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CreateAdministrador extends CreateRecord
 {
@@ -17,27 +14,25 @@ class CreateAdministrador extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $request = Request::create('/route', 'POST', $data);
+        // Garantir que os campos 'email', 'telefone' e 'password' estão definidos
+        if (!isset($data['email']) || !isset($data['telefone']) || !isset($data['password'])) {
+            throw new \Exception('Os campos "email", "telefone" e "password" são obrigatórios.');
+        }
 
-        $registroUsuarioService = new registroUsuarioService();
-        $usuario = $registroUsuarioService->storeUsuario($request);
+        // Criação do usuário na tabela users
+        $user = User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'telefone' => $data['telefone'],
+            'tipo' => $data['tipo'],
+        ]);
 
-        unset($data['telefone']);
-        unset($data['email']);
-        unset($data['password']);
-        $data['user_id'] = $usuario->id;
-        //$administrador = $registroUsuarioService->storeAdministrador($request, $usuario);
+        // Remover os campos que não pertencem à tabela administrador
+        unset($data['email'], $data['password'], $data['telefone']);
+
+        // Associar o user_id ao administrador
+        $data['user_id'] = $user->id;
 
         return $data;
-    }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
-
-    protected function getCreatedNotificationTitle(): ?string
-    {
-        return 'Administrator registered';
     }
 }

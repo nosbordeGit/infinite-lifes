@@ -47,7 +47,7 @@ class AdministradorResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->label(__('E-Mail Address'))
                     ->email()
-                    ->unique()
+                    ->unique('users','email')//alteração para garantir que os dados sejam salvos na tabela correta no caso users
                     ->required()
                     ->maxLength(255)
                     ->placeholder('email@gmail.com'),
